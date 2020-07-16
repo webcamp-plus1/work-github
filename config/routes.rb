@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
-  resources :members do
-    resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
-  end 
+  resources :members
+  resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
   
   resources :carts, only: [:create, :index, :update, :destroy]
 

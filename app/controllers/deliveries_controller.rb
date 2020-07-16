@@ -1,10 +1,17 @@
 class DeliveriesController < ApplicationController
   def index
-    @deliveries = Derlivery.all
+    @deliveries = Delivery.all
     @delivery = Delivery.new
   end
 
   def create
+    @delivery = Delivery.new(delivery_params)
+    if @delivery.save
+      redirect_to request.referer
+    else
+      @delivery = Delivery.all
+      redirect_to request.referer
+    end
   end
 
   def destroy
@@ -16,7 +23,7 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    if @user.update(delivery_params)
+    if @delivery.update(delivery_params)
       redirect_to request.referer
     else
       redirect_to request.referer
