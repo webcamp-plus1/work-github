@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  addressee: MyString
+  pstal_code: MyString
+  destination: MyString
+
+two:
+  member: two
+  addressee: MyString
+  pstal_code: MyString
+  destination: MyString
