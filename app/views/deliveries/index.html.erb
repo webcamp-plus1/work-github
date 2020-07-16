@@ -1,25 +1,36 @@
-<h1>Deliveries#index</h1>
-<h1>配送先登録/一覧</h1>
-
-<%= form_for(@delivery) do |f| %>
-	<div class="field">
-		<%= f.label :pstal_code %>
-		<%= f.text_field :pstal_code, class: "pstal_code" %>
-	</div>
-	<div class="field">
-		<%= f.label :destination %>
-		<%= f.text_field :destination, class: "destination" %>
-	</div>
-	<div class="field">
-		<%= f.label :addressee %>
-		<%= f.text_field :addressee, class: "addressee" %>
-	</div>
-	<div class="actions">
-		<%= f.submit "登録する", class: "btn btn-primary col-xs-9" %>
-	</div>
-<% end %>
+<h2>配送先登録/一覧</h2>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col">
+		<%= form_for(@delivery) do |f| %>
+			<table>
+				<tr>
+					<th>郵便番号(ハイフンなし)</th>
+					<th>
+						<%= f.text_field :postal_code, class: "postal_code" %>
+					</th>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<th>
+						<%= f.text_field :destination, class: "destination" %>
+					</th>
+				</tr>
+				<tr>
+					<th>宛名</th>
+					<th>
+						<%= f.text_field :addressee, class: "addressee" %>
+					</th>
+					<th></th>
+					<th>
+						<%= f.submit "登録する", class: "btn btn-primary" %>
+					</th>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+
+
+	<div class="col-xs-9">
 		<table class="table">
 			<thead>
 				<tr>
@@ -27,22 +38,23 @@
 					<th>住所</th>
 					<th>宛名</th>
 					<th></th>	
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<% @deliveries.each do |delivery| %> 
-						<td><%= @delivery.pstal_code %></td>
-						<td><%= @delivery.destination %></td>
-						<td><%= @delivery.addressee %></td>
+				<% @deliveries.each do |delivery| %> 
+					<tr>
+						<td><%= delivery.postal_code %></td>
+						<td><%= delivery.destination %></td>
+						<td><%= delivery.addressee %></td>
 						<td>
-							<%= link_to "編集する",  edit_member_delivery_path(@delivery), class: "btn-sm btn-success" %>
+							<%= link_to "編集する",  edit_delivery_path(delivery), class: "btn-sm btn-success" %>
 						</td>
 						<td>
-							<%= link_to "削除する", member_delivery_path(@delivery), method: :delete, class: "btn-sm btn-danger" %>
+							<%= link_to "削除する", delivery_path(delivery), method: :delete, class: "btn-sm btn-danger" %>
 						</td>
-					<% end %>
-				</tr>
+					</tr>
+				<% end %>
 			</tbody>
 		</table>
 	</div>

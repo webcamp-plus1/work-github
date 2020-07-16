@@ -6,6 +6,7 @@ class DeliveriesController < ApplicationController
 
   def create
     @delivery = Delivery.new(delivery_params)
+    @delivery.member_id = current_member.id
     if @delivery.save
       redirect_to request.referer
     else
@@ -15,6 +16,9 @@ class DeliveriesController < ApplicationController
   end
 
   def destroy
+    @delivery = Delivery.find(params[:id])
+    @delivery.destroy
+    redirect_to request.referer
   end
 
   def edit
@@ -24,7 +28,7 @@ class DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to request.referer
+      redirect_to deliveries_path(current_member)
     else
       redirect_to request.referer
     end
@@ -32,6 +36,6 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).permit(:pstal_code, :destination, :addressee)
+    params.require(:delivery).permit(:postal_code, :destination, :addressee)
   end
 end

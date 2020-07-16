@@ -1,18 +1,30 @@
-<h1>Deliveries#edit</h1>
+<div class="row">
+	<div class="col">
+		<h2>配送先編集</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
 <%= form_for(@delivery) do |f| %>
-	<div class="field">
-		<%= f.label :pstal_code %>
-		<%= f.text_field :pstal_code, class: "pstal_code" %>
-	</div>
-	<div class="field">
-		<%= f.label :destination %>
-		<%= f.text_field :destination, class: "destination" %>
-	</div>
-	<div class="field">
-		<%= f.label :addressee %>
-		<%= f.text_field :addressee, class: "addressee" %>
-	</div>
-	<div class="actions">
-		<%= f.submit "編集する" class: "btn btn-primary col-xs-9"  %>
-	</div>
+<table>
+	<tr>
+		<th>郵便番号(ハイフンなし)</th>
+		<th><%= f.text_field :postal_code, class: "postal_code" %></th>
+	</tr>
+		<tr>
+		<th>住所</th>
+		<th><%= f.text_field :destination, class: "destination" %></th>
+	</tr>
+	<tr>
+		<th>宛名</th>
+		<th><%= f.text_field :addressee, class: "addressee" %></th>
+	</tr>
+	<tr>
+		<th></th>
+		<th></th>
+		<th><%= f.submit "編集する", class: "btn btn-primary" %></th>
+	</tr>
+</table>
 <% end %>
+</div>
+</div>
