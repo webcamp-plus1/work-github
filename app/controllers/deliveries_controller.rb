@@ -28,7 +28,7 @@ class DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to deliveries_path(current_member)
+      redirect_to deliveries_path
     else
       redirect_to request.referer
     end
