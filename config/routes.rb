@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
-  resources :members
+  resource :member
+  get 'member/mypage', to: 'members#show'
+
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
   
   resources :carts, only: [:create, :index, :update, :destroy]
