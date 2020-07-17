@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
 
 	def show
-		@member = Member.find(params[:id])
+		@member = current_member
 	end
 
 	def edit
@@ -15,6 +15,17 @@ class MembersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def unsubscribe_screen
+  end
+
+  def unsubscribe
+    @member = Member.find(params[:id])
+    @member.update(is_unsubscribe_status: true)
+    reset_session
+    flash[:notice] = "ありがとうございました、またのご利用を心からお待ちしております。"
+    redirect_to root_path
   end
 
   private
