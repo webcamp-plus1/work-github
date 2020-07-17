@@ -60,8 +60,7 @@
   <div class="actions">
     <%= f.submit "編集内容を保存する"%>
   </div>
-  <% if member_signed_in? && @user.id == current_member.id %>
-    <div class="unsubscribe">
-        <%= link_to "退会する", unsubscribe_screen_path(current_user), class: "btn btn-outline-danger" %>
-    </div>
 <% end %>
+    <div class="unsubscribe">
+        <%= link_to "退会する", unsubscribe_screen_path, class: "btn btn-outline-danger" %>
+    </div>
