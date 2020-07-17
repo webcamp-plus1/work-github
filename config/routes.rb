@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
+
   resources :members
   get "/members/unsubscribe" => "members#unsubscribe_screen", as: 'unsubscribe_screen'
   patch "/members/unsubscribe" => "members#unsubscribe", as: 'members_unsubscribe'
+
+
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
 
   resources :carts, only: [:create, :index, :update, :destroy]
