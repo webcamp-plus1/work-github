@@ -17,6 +17,17 @@ class MembersController < ApplicationController
     end
   end
 
+  def unsubscribe_screen
+  end
+
+  def unsubscribe
+    @member = Member.find(params[:id])
+    @member.update(is_unsubscribe_status: true)
+    reset_session
+    flash[:notice] = "ありがとうございました、またのご利用を心からお待ちしております。"
+    redirect_to root_path
+  end
+
   private
 
   def member_params
