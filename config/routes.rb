@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
+
+
+  namespace :admins do
+    resources :genres, only: [:index, :create, :edit, :update]
+  end
+
   resources :members
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
   
