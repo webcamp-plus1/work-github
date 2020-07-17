@@ -24,6 +24,23 @@
             <li><%= link_to '商品一覧', "#" %></li>
             <li><%= link_to 'カート', "#" %></li>
             <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+          <% elsif admin_signed_in? %>
+            <li>管理者</li>
+            <li class="">
+              <%= link_to "商品一覧", "#" %>
+            </li>
+            <li class="">
+              <%= link_to "会員一覧", "#" %>
+            </li>
+            <li class="">
+              <%= link_to "注文履歴一覧", "#" %>
+            </li>
+            <li class="">
+              <%= link_to "ジャンル一覧", "#" %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            </li>
           <% else %>
             <li><%= link_to 'About', "/homes/about" %></li>
             <li><%= link_to '商品一覧', "#" %></li>
