@@ -14,6 +14,12 @@
             <%= f.text_field :name, class: "name" %>
           </th>
           <th>
+            <%= f.radio_button :is_void_flag, true %>
+            <%= f.label :is_void_flag, '有効', value: true %>
+            <%= f.radio_button :is_void_flag, false %>
+            <%= f.label :is_void_flag, '無効', value: false %>
+          </th>
+          <th>
             <%= f.submit "変更を保存する", class: "btn btn-primary" %>
           </th>
         </tr>
