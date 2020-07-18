@@ -18,6 +18,8 @@
 					<th>税抜き価格</th>
 					<th>ジャンル</th>
 					<th>ステータス</th>
+					<th>ステータス</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -31,6 +33,9 @@
 						<th><%= item.tax_excluded_price %></th>
 						<th><%= item.genre.name %></th>
 						<th><%= item.is_sales_status %></th>
+
+		<th><%= attachment_image_tag(@item, :image, :fill, 300, 300, format: 'jpeg' ) %></th>
+
 					</tr>
 				<% end %>
 			</tbody>
