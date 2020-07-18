@@ -1,2 +1,26 @@
 <h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+
+<div class="row">
+	<div class="col">
+		<h1>ジャンル検索</h1>
+		<% @genres.each do |genre| %>
+			<%= genre.name %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<table>
+			<caption>商品一覧
+				<span>(全ｘ件)</span>
+			</caption>
+			<% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.tax_excluded_price %></td>
+          </tr>
+        <% end %>
+		</table>
+	</div>
+</div>
