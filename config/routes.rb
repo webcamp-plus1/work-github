@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :items
   end
 
   resources :members

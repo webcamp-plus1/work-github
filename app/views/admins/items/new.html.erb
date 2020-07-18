@@ -1,0 +1,36 @@
+<%= form_for(@item, url: admins_items_path) do |f| %>
+	<div class="row">
+		<div class="col">
+			<h1>商品新規登録</h1>
+		  			<%= f.attachment_field :image_id %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<table>
+				<tr>
+					<th>商品名<%= f.text_field :name, class: "name" %></th>
+
+					<th>
+						商品説明<%= f.text_area :description, class: "description" %>
+					</th>
+
+					<th>ジャンル<%= f.select :genre, [[]], include_blank: "選択して下さい" %>
+					</th>
+
+					<th>税抜き価格<%= f.text_field :tax_excluded_price, class: "tax_excluded_price" %>円
+					</th>
+
+					<th>販売ステータス<%= f.select :is_sales_status, [[]], include_blank: "選択して下さい" %>
+					</th>
+
+					<th>
+						<%= f.submit "新規登録", class: "btn btn-primary" %>
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+<% end %>
+
+
