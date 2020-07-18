@@ -3,12 +3,12 @@
 <table>
 	<tr>
 		<th>登録情報</th>
-		<th><%= link_to '編集する', edit_member_path(@member) %></th>
-		<th><%= link_to 'パスワードを変更する' %></th>
+		<th><%= link_to '編集する', edit_member_path(@member), class: "btn btn-default", style: "margin-left: 10px;" %></th>
+		<th><%= link_to 'パスワードを変更する', '#', class: "btn btn-default", style: "margin-left: 10px;" %></th>
 	</tr>
 </table>
 
-<table>
+<table class="table table-bordered" style="margin-top: 20px; margin-bottom: 20px; width: 90%;" >
 
 	<tr>
 		<th>氏名</th>
@@ -41,12 +41,11 @@
 <table>
 	<tr>
 		<th>配送先</th>
-		<th><%= link_to '一覧を見る', deliveries_path %></th>
+		<th><%= link_to '一覧を見る', deliveries_path, class: "btn btn-default", style: "margin-left: 10px;" %></th>
 	</tr>
-</table>
-<table>
+
 	<tr>
 		<th>注文履歴</th>
-		<th><%= link_to '一覧を見る' %></th>
+		<th><%= link_to '一覧を見る', '#', class: "btn btn-default", style: "margin-left: 10px;" %></th>
 	</tr>
 </table>
