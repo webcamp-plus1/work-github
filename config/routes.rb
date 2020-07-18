@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resources :items
   end
 
-  resources :members
+
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
   patch '/members/unsubscribe' => 'members#unsubscribe', as: 'members_unsubscribe'
+  resources :members
 
 
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]

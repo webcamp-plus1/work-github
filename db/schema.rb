@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_111711) do
+ActiveRecord::Schema.define(version: 2020_07_18_035216) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_111711) do
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
-    t.boolean "is_sales_status"
     t.string "description"
     t.integer "tax_excluded_price"
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_sales_status", default: true, null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
