@@ -9,9 +9,9 @@ class MembersController < ApplicationController
 	end
 
   def update
-    @member = Member.find(params[:id])
+    @member = current_member
     if @member.update(member_params)
-      redirect_to member_path(@member.id), notice: "You have updated user successfully."
+      redirect_to members_path(@member.id), notice: "You have updated user successfully."
     else
       render "edit"
     end
