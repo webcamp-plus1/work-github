@@ -11,28 +11,20 @@
 		</div>
 
 	<div class="col-md-10" style="background-color: #99f;" >
-		<table>
+
 
 			<h4>商品一覧<span>(全ｘ件)</span></h4>
 	            <% @items.each do |item| %>
-		          <tr>
 
-		            <td><%= item.name %></td>
-		            <td><%= item.tax_excluded_price %></td>
-		          </tr>
+				<div class="col-xs-6 col-md-3 item-index" >
+				<%= item.name %></br>
+	            <%= item.tax_excluded_price %></div>
+
 	            <% end %>
-		</table>
+
 		<!-- <div class="clearfix visible-xs visible-sm"></div> -->
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #ff9;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f92;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f49;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #ff9;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f92;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f49;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #ff9;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f92;">商品イメージ<br>商品名<br>1000円</div>
-		<div class="col-xs-6 col-md-3" style="height: 10rem; background-color: #f49;">商品イメージ<br>商品名<br>1000円</div>
-		<%= paginate @items %>
-	</div>
+
+			<%= paginate @items %>
+		</div>
 	</div>
 </div>
