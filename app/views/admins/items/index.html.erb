@@ -24,9 +24,12 @@
 				<% @items.each do |item| %>
 					<tr>
 						<th><%= item.id %></th>
-						<th><%= item.name %></th>
+						<th>
+							<%= link_to admins_item_path(item) do %>
+								<%= item.name %></th>
+							<% end %>
 						<th><%= item.tax_excluded_price %></th>
-						<th><%= item.genre %></th>
+						<th><%= item.genre.name %></th>
 						<th><%= item.is_sales_status %></th>
 					</tr>
 				<% end %>
