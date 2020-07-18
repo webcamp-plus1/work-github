@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :members, only: [:edit, :show, :update]
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
   }
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
   patch '/members/unsubscribe' => 'members#unsubscribe', as: 'members_unsubscribe'
-  resources :members
+
 
 
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]

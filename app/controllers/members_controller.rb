@@ -21,11 +21,11 @@ class MembersController < ApplicationController
   end
 
   def unsubscribe
-    @member = Member.find(params[:id])
+    @member = current_member
     @member.update(is_unsubscribe_status: true)
     reset_session
     flash[:notice] = "ありがとうございました、またのご利用を心からお待ちしております。"
-    redirect_to root_path
+    redirect_to new_member_session_path
   end
 
   private

@@ -21,7 +21,7 @@
 					<th>税抜き価格<%= f.text_field :tax_excluded_price, class: "tax_excluded_price" %>円
 					</th>
 
-					<th>販売ステータス<%= f.select :is_sales_status, [["販売中"], ["販売停止中"]], include_blank: "選択して下さい" %>
+					<th>販売ステータス<%= f.select :is_sales_status, [["販売中", true], ["販売停止中", false]] %>
 					</th>
 
 					<th>
