@@ -6,13 +6,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-  end
-
-   def create
-   	@item = Item.find(params[:id])
-    cart_item = current_member.cart_items.new(cart_item_params)
-    cart.save
-    redirect_to request.referer
+    @item_post = Item.new
   end
 
    private

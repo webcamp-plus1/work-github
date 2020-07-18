@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_035216) do
+ActiveRecord::Schema.define(version: 2020_07_18_125216) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_035216) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_void_flag"
+    t.boolean "is_void_flag", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

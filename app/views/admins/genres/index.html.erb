@@ -9,6 +9,12 @@
             <%= f.text_field :name, class: "name" %>
           </th>
           <th>
+            <%= f.radio_button :is_void_flag, true %>
+            <%= f.label :is_void_flag, '有効', value: true %>
+            <%= f.radio_button :is_void_flag, false %>
+            <%= f.label :is_void_flag, '無効', value: false %>
+          </th>
+          <th>
             <%= f.submit "追加", class: "btn btn-primary" %>
           </th>
         </tr>
@@ -30,7 +36,11 @@
         <% @genres.each do |genre| %>
           <tr>
             <td><%= genre.name %></td>
-            <td><%= genre.is_void_flag %></td>
+            <td>
+              <% if (genre.is_void_flag == true) %>有効
+              <% else %>無効
+              <% end %>
+            </td>
             <td>
               <%= link_to "編集する",  edit_admins_genre_path(genre), class: "btn-sm btn-success" %>
             </td>

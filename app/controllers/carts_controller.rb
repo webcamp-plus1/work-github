@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
-   def create
-    @item = Item.find(params[:id])
-    cart_item = current_member.cart_items.new(cart_item_params)
-    cart.save
+  def create
+    item = Item.find(params[:item_id])
+    cart_item = current_member.cart_items.new(item_id: item.id)
+    cart_item.save
     redirect_to request.referer
   end
 
