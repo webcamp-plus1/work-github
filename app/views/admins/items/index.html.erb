@@ -18,7 +18,6 @@
 					<th>税抜き価格</th>
 					<th>ジャンル</th>
 					<th>ステータス</th>
-					<th>ステータス</th>
 
 				</tr>
 			</thead>
@@ -32,12 +31,9 @@
 							<% end %>
 						<th><%= item.tax_excluded_price %></th>
 						<th><%= item.genre.name %></th>
-						<th>
-              <% if (item.is_sales_status == true) %>販売中
-		          <% else %>販売停止中
-		          <% end %>
-		        </th>
-		       </tr>
+						<th><% if (item.is_sales_status == true) %>販売中
+		                    <% else %>販売停止中<% end %></th>
+		            </tr>
 				<% end %>
 			</tbody>
 		</table>
