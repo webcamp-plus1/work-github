@@ -19,6 +19,7 @@
 			</tr>
 			<tr>
 				<th>税込価格（税抜価格）</th>
+				<th><%= (@item.tax_excluded_price * 1.1).round(0) %>円</th>
 				<th><%= @item.tax_excluded_price %>円</th>
 			</tr>
 			<tr>

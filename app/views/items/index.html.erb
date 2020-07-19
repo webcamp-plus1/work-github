@@ -13,12 +13,15 @@
 	<div class="col-md-10" style="background-color: #99f;" >
 
 
-			<h4>商品一覧<span>(全ｘ件)</span></h4>
+			    <h4>商品一覧<span>(全<%= @items.total_count %>件)</span></h4>
 	            <% @items.each do |item| %>
 
 				<div class="col-xs-6 col-md-3 item-index" >
+				<%= link_to item_path(item) do %>
+				<%= attachment_image_tag item, :image, :fill, 100, 50, format: 'jpeg', fallback: "no_image.jpg", size: '100×50' %></br>
+				<% end %>
 				<%= item.name %></br>
-	            <%= item.tax_excluded_price %></div>
+	            ¥<%= item.tax_excluded_price %></div>
 
 	            <% end %>
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resource :members, only: [:edit, :show, :update] do
+  get 'members/mypage', to: 'members#show'
+  resource :members, only: [:edit, :update] do
         resources :carts, only: [:create, :index, :update, :destroy]
   end
   devise_for :admins, controllers: {

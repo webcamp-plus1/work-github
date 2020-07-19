@@ -1,10 +1,19 @@
 <h1>Items#show</h1>
+
 <div class="row">
-	<div class="col-4">
-		<h2>商品詳細</h2>
-	</div>
-	<div class="col-8">
+		<div class="col-xs-6 col-md-2">
+			<table class="table">
+				<h4>ジャンル検索</h4>
+				<% @genres.each do |genre| %>
+					<li style="list-style: none;"><%= genre.name %></li>
+				<% end %>
+			</table>
+		</div>
+	<div class="col-md-10">
 		<table>
+			<tr>
+			　　 <th><%= attachment_image_tag @item, :image, :fill, 150, 140, format: 'jpeg', fallback: "no_image.jpg" %></th>
+			</tr>
 			<tr>
 				<th>商品名</th>
 				<th><%= @item.name %></th>
@@ -14,24 +23,15 @@
 				<th><%= @item.description %></th>
 			</tr>
 			<tr>
-				<th>ジャンル</th>
-				<th><%= @item.genre.name %></th>
-			</tr>
-			<tr>
-				<th>税込価格（税抜価格）</th>
-				<th><%= @item.tax_excluded_price %>円</th>
-			</tr>
-			<tr>
-				<th>販売ステータス</th>
-        	    <th><% if (@item.is_sales_status == true) %>販売中
-	            <% else %>販売停止中
-	            <% end %></th>
+				<th>￥</th>
+				<th><%= (@item.tax_excluded_price * 1.1).round(0) %>円（税込）</th>
 			</tr>
 		</table>
+
+		<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
+		<%= f.number_field :count,min:1,max:10 %>
+		<%= f.hidden_field :item_id, :value => @item.id %>
+		<%= f.submit 'カートに入れる' %>
+		<% end %>
 	</div>
 </div>
-<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
-<%= f.number_field :count,min:1,max:10 %>
-<%= f.hidden_field :item_id, :value => @item.id %>
-<%= f.submit 'カートに入れる' %>
-<% end %>
