@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   sessions: 'admins/sessions'
   }
 
-  devise_for :members
+  devise_for :members, :controllers => {
+    :registrations => 'members/registrations',
+    :sessions => 'members/sessions'
+  }
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
