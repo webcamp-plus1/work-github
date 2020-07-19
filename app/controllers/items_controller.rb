@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
     @item_post = Item.new
   end
 
+
    private
   def cart_item_params
     params.require(:cart_item).permit(:count)

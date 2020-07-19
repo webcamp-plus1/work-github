@@ -3,7 +3,7 @@ class CartsController < ApplicationController
     item = Item.find(params[:item_id])
     cart_item = current_member.cart_items.new(item_id: item.id)
     cart_item.save
-    redirect_to request.referer
+    redirect_to item_carts_path(:item_id)
   end
 
   def index
