@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
      else
        @item_post = CartItem.new
      end
+    @genres = Genre.all
   end
 
 
@@ -18,4 +19,5 @@ class ItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:count)
   end
+
 end

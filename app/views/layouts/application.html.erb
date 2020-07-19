@@ -20,9 +20,9 @@
       <nav>
         <ul class="nav navbar-nav navbar-right"　>
           <% if member_signed_in? %>
-            <li><%= link_to "マイページ", "#" %></li>
-            <li><%= link_to '商品一覧', "#" %></li>
-            <li><%= link_to 'カート', "#" %></li>
+            <li><%= link_to "マイページ", members_mypage_path %></li>
+            <li><%= link_to '商品一覧', items_path %></li>
+            <li><%= link_to 'カート', members_carts_path %></li>
             <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
           <% elsif admin_signed_in? %>
             <li>管理者</li>
