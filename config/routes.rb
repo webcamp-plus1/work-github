@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resource :members, only: [:edit, :show, :update]
+  resource :members, only: [:edit, :show, :update] do
+        resources :carts, only: [:create, :index, :update, :destroy]
+  end
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
   }
-  
+
   devise_for :members
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
@@ -13,17 +15,12 @@ Rails.application.routes.draw do
     resources :items
   end
 
-
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
   patch '/members/unsubscribe' => 'members#unsubscribe', as: 'members_unsubscribe'
 
-
+  resources :items, only: [:index, :show, :create]
 
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
-
-  resources :items, only: [:index, :show, :create] do 
-      resources :carts, only: [:create, :index, :update, :destroy]
-  end
 
   resources :oreders
 
