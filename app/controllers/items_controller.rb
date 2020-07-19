@@ -6,7 +6,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_post = Item.new
+    if current_member.cart_items.find_by(item_id: @item.id)
+       @item_post = current_member.cart_items.find_by(item_id: @item.id)
+     else
+       @item_post = CartItem.new
+     end
   end
 
 

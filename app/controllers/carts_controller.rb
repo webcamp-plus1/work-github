@@ -1,10 +1,17 @@
 class CartsController < ApplicationController
+
   def create
-    item = Item.find(params[:item_id])
-    cart_item = current_member.cart_items.new(item_id: item.id)
-    cart_item.save
-    redirect_to item_carts_path(:item_id)
-  end
+    cart_item = CartItem.find_by(member_id: current_member.id, item_id: params[:cart_item][:item_id])
+
+    if  cart_item
+        cart_item.count += params[:cart_item][:count].to_i
+      else
+        cart_item = CartItem.new(cart_item_params)
+        cart_item.member_id = current_member.id
+      end
+        cart_item.save
+        redirect_to members_carts_path
+   end
 
   def index
     @cart_items = CartItem.all
@@ -21,6 +28,6 @@ class CartsController < ApplicationController
 
   private
   def cart_item_params
-    params.require(:cart_item).permit(:count)
+    params.require(:cart_item).permit(:count, :item_id)
   end
 end
