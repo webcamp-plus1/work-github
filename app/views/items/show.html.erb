@@ -30,6 +30,8 @@
 		</table>
 	</div>
 </div>
-<%= link_to item_carts_path(@item), method: :post do %>
-	<span>カートに入れる</span>
+<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
+<%= f.number_field :count,min:1,max:10 %>
+<%= f.hidden_field :item_id, :value => @item.id %>
+<%= f.submit 'カートに入れる' %>
 <% end %>
