@@ -22,10 +22,10 @@
 					<%= form_for(cart_item, url: "/members/carts/#{cart_item.id}") do |f| %>
 							<%= f.text_field :count %>
 							<%= f.submit '変更', class: "btn btn-primary" %>
-						<% end %>　
+						<% end %>
 				</td>
 				<td>
-					<%= (cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count) %>円
+					<%= @sum =+ ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>円
 				</td>
 				<td>
 					<%= link_to '削除する', "/members/carts/#{cart_item.id}", method: :delete, class: "btn-sm btn-danger" %>
@@ -34,3 +34,16 @@
 		<% end %>
 	</tbody>
 </table>
+<div class="row">
+	<div class="col-md-3 col-md-offset-9">
+		<!-- ↑ offse-にて９分割分頭に余白をつけています。 -->
+		<table class="table table-bordered">
+		<tr>
+			<th>合計金額</th>
+
+			<td><%= @sum %>円</td>
+		</tr>
+		</table>
+	</div>
+</div>
+
