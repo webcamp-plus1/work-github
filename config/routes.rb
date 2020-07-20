@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
+    resources :members
   end
 
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
