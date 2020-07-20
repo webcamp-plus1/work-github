@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'members/mypage', to: 'members#show'
   resource :members, only: [:edit, :update] do
         resources :carts, only: [:create, :index, :update, :destroy]
+        delete :carts, to: 'carts#destroy_all'
   end
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
