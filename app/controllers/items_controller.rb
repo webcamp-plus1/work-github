@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
   def index
-  	@items = Item.page(params[:page]).reverse_order
-  	@genres = Genre.all
+    if params[:genre_id]
+      @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
+    else
+    	@items = Item.page(params[:page]).reverse_order
+    end
+    @genres = Genre.all
   end
 
   def show
@@ -11,6 +15,11 @@ class ItemsController < ApplicationController
      else
        @item_post = CartItem.new
      end
+    @genres = Genre.all
+  end
+
+  def search
+    @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
     @genres = Genre.all
   end
 
