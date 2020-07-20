@@ -1,10 +1,12 @@
 <h1>Items#index</h1>
 <div class="container-fluid">
 	<div class="row sampleRow">
-		<div class="col-xs-6 col-md-2" style="background-color: #f99;">
-			<table class="table">
-				<h4>ジャンル検索</h4>
-				<% @genres.each do |genre| %>
+		<div class="col-xs-6 col-md-2"">
+			<table class="table table-bordered">
+					<tr>
+						<th>ジャンル検索</th>
+					</tr>
+						<% @genres.each do |genre| %>
 					<tr>
 						<th>
 						<%= link_to item_search_path(genre_id: genre.id) do %>
