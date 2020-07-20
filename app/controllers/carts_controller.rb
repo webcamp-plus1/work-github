@@ -16,7 +16,6 @@ class CartsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
-    cart_item = CartItem.find(id: cart_item.id)
   end
 
   def update
@@ -29,9 +28,14 @@ class CartsController < ApplicationController
   end
 
   def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to request.referer
   end
 
-  def all_destroy
+  def destroy_all
+    CartItem.destroy_all
+    redirect_to request.referer
   end
 
   private
