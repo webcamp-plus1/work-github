@@ -1,2 +1,47 @@
 <h1>Admins::Members#show</h1>
 <p>Find me in app/views/admins/members/show.html.erb</p>
+
+<h3><%= @member.last_name %><%= @member.first_name %>さんの会員詳細</h3>
+
+
+
+<table class="table table-bordered" style="margin-top: 20px; margin-bottom: 20px; width: 90%;" >
+
+	<tr>
+		<th>顧客ID</th>
+		<th>
+			<% if (@member.is_unsubscribe_status == true) %>退会済
+	        <% else %>有効<% end %>
+        </th>
+	</tr>
+
+	<tr>
+		<th>氏名</th>
+		<th><%= @member.last_name %>　<%= @member.first_name %></th>
+	</tr>
+
+	<tr>
+		<th>カナ</th>
+		<th><%= @member.last_name_kana %><%= @member.first_name_kana %></th>
+	</tr>
+	<tr>
+		<th>郵便番号</th>
+		<th><%= @member.postal_code %></th>
+	</tr>
+	<tr>
+		<th>住所</th>
+		<th><%= @member.address %></th>
+	</tr>
+	<tr>
+		<th>電話番号</th>
+		<th><%= @member.phone_number %></th>
+	</tr>
+	<tr>
+		<th>メールアドレス</th>
+		<th><%= @member.address %></th>
+	</tr>
+
+</table>
+
+<%= link_to "編集する", edit_admins_member_path(@member), class: "btn btn-success edit_admins_member_#{@member.id}" %>
+<%= link_to "注文履歴詳細を見る", '#', class: "btn btn-info" %>
