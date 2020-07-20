@@ -1,7 +1,7 @@
 <h1>Carts#index</h1>
 
 
-<table>
+<table class="table table-bordered">
 	<thead>
 		<tr>
 			<th>商品名</th>
@@ -14,11 +14,11 @@
 	<tbody>
 		<% @cart_items.each do |cart_item| %>
 			<tr>
-				<td><%= cart_item.item.name %></td>
-				<td><%= cart_item.item.tax_excluded_price %></td>
+			　　 <td><%= attachment_image_tag cart_item.item, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg" %>
+				<%= cart_item.item.name %></td>
+				<td><%= (cart_item.item.tax_excluded_price * 1.1 ).round(0) %></td>
 				<td><%= cart_item.count %></td>
-				<td>合計</td>
-
+				<td><%= cart_item.item.tax_excluded_price %>円</td>
 			</tr>
 		<% end %>
 	</tbody>
