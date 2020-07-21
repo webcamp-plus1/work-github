@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   def new
-    @member = Member.find_by(member_id: current_member.id)
     @order = Order.new
   end
 
@@ -11,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     if @order.save
-      render 'confirm'
+      redirect_to request.referer
     else
       @orders = Order.all
       redirect_to request.referer
@@ -22,9 +21,11 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
 
