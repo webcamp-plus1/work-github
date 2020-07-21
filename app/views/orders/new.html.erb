@@ -20,6 +20,7 @@
 	<h3>お届け先</h3>
 	<table>
 		<tr>
+			<!-- ラジオボタンif文で保存するデータを変更する -->
 			<th>
         <%= f.radio_button :delivery_target_address, :current_member %>
         <%= f.label :delivery_target_address, "ご自身の住所" %>
@@ -37,6 +38,6 @@
 		</tr>
 	</table>
 	<%= f.submit class: 'btn btn-primary col-xs-12'%>
-<% end %>
+<% end %> 
 
 </div>
