@@ -1,2 +1,50 @@
 <h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="row">
+<h3>注文情報入力</h3>
+
+<%= form_for(@order) do |f| %>
+<h3>支払い方法</h3>
+	<table>
+		<tr>
+			<th>
+        <%= f.radio_button :payment_method %>
+        <%= f.label :payment_method, 'クレジットカード'　%>
+      </th>
+      <th>
+        <%= f.radio_button :payment_method %>
+        <%= f.label :payment_method, '銀行振込' %>
+      </th>
+		</tr>
+	</table>
+
+	<h3>お届け先</h3>
+	<table>
+		<tr>
+			<th>
+        <%= f.radio_button :postal_code %>
+        <%= f.label :postal_code, 'ご自身の住所'　%>
+        <%= member.postal_code %>
+        <%= member.address %>
+        <%= member.first_name %>
+        <%= member.last_name %>
+      </th>
+      <th>
+        <%= f.radio_button :postal_code %>
+        <%= f.label :postal_code, '登録済住所から選択' %>
+      </th>
+      <th>
+        <%= f.radio_button :postal_code %>
+        <%= f.label :postal_code, '新しいお届け先' %>
+        <%= f.label :'郵便番号(ハイフンなし)' %>
+    		<%= f.text_field :postal_code %>
+    		<%= f.label :住所 %>
+    		<%= f.text_field :delivery_target_address %>
+    		<%= f.label :宛名 %>
+    		<%= f.text_field :addressee %>
+      </th>
+		</tr>
+	</table>
+	<%= f.submit class: 'btn btn-primary col-xs-12'%>
+<% end %>
+
+</div>
