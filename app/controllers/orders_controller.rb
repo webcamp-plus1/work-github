@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     if @order.save
-      render 'confirm'
+      redirect_to request.referer
     else
       @orders = Order.all
       redirect_to request.referer
@@ -21,9 +21,11 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
 
@@ -32,3 +34,4 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method)
     end
 end
+ 
