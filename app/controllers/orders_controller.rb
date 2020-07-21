@@ -1,11 +1,20 @@
 class OrdersController < ApplicationController
   def new
+    @order = Order.new
   end
 
   def cnfirm
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    if @order.save
+      render 'confirm'
+    else
+      @orders = Order.all
+      redirect_to request.referer
+    end
   end
 
   def done
@@ -16,4 +25,10 @@ class OrdersController < ApplicationController
 
   def show
   end
+
+
+  private
+    def order_params
+      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method)
+    end
 end

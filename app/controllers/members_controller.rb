@@ -11,7 +11,7 @@ class MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
-      redirect_to members_path(@member.id), notice: "You have updated user successfully."
+      redirect_to members_mypage_path, notice: "You have updated user successfully."
     else
       render "edit"
     end

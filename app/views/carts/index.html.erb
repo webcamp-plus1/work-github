@@ -12,6 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
+	<% @sum = 0 %>
 		<% @cart_items.each do |cart_item| %>
 			<tr>
 			　　 <td><%= attachment_image_tag cart_item.item, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg" %>
@@ -25,8 +26,9 @@
 						<% end %>
 				</td>
 				<td>
-					<%= @sum =+ ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>円
+					<%= ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>円
 				</td>
+					<% @sum += ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>
 				<td>
 					<%= link_to '削除する', "/members/carts/#{cart_item.id}", method: :delete, class: "btn-sm btn-danger" %>
 				</td>
@@ -36,14 +38,15 @@
 </table>
 <div class="row">
 	<div class="col-md-3 col-md-offset-9">
-		<!-- ↑ offse-にて９分割分頭に余白をつけています。 -->
+		<!--  offse-にて９分割分頭に余白をつけています。 -->
 		<table class="table table-bordered">
 		<tr>
 			<th>合計金額</th>
-
 			<td><%= @sum %>円</td>
 		</tr>
 		</table>
 	</div>
 </div>
+
+<%= link_to '確認画面へ進む', new_oreder_path(cart_item: cart_item.id), method: :post %>
 
