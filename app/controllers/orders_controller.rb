@@ -34,3 +34,4 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method)
     end
 end
+ 
