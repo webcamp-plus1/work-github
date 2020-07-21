@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   def new
-    @member = Member.find_by(member_id: current_member.id)
     @order = Order.new
   end
 
