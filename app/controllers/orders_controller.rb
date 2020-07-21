@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   def new
+    @member = Member.find_by(member_id: current_member.id)
     @order = Order.new
   end
 
@@ -8,7 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.user_id = current_user.id
+    @order.member_id = current_member.id
     if @order.save
       render 'confirm'
     else
