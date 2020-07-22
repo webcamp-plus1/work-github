@@ -1,1 +1,68 @@
-<h1>Orders#show</h1>
+<h1>注文履歴詳細</h1>
+
+<div class="col-md-8">
+	<h4>注文情報</h4>
+	<table class="table table-bordered">
+		<tr>
+			<th>注文日</th>
+			<th><%= @order.created_at %></th>
+		</tr>
+		<tr>
+			<th>配送先</th>
+			<th><%= @order.postal_code %><br>
+			<%= @order.delivery_target_address %><br>
+			<%= @order.addressee %></th>
+		</tr>
+		<tr>
+			<th>支払方法</th>
+			<th><%= @order.payment_method %></th>
+		</tr>
+		<tr>
+			<th>ステータス</th>
+			<th><%= @order.status %></th>
+		</tr>
+	</table>
+</div>
+
+<div class="col-md-4">
+	<h4>請求情報</h4>
+	<table class="table table-bordered">
+		<tr>
+			<th>商品合計</th>
+			<th></th>
+		</tr>
+		<tr>
+			<th>配送料</th>
+			<th>800</th>
+		</tr>
+		<tr>
+			<th>ご請求額</th>
+			<th></th>
+		</tr>
+	</table>
+</div>
+<div class="row">
+	<div class="col-md-10">
+		<h4>請求情報</h4>
+		<table class="table table-bordered">
+
+			<!-- カート内商品の繰り返し必要 -->
+			<thead>
+				<tr>
+					<th>商品</th>
+					<th>単価(税込)</th>
+					<th>個数</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= @order.member.cart_items.name %></td>
+					<td><%= @order.member %></td>
+					<td><%= @order.member.cart_items.count %></td>
+					<td><%= @order.payment_method %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
