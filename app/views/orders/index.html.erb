@@ -1,15 +1,33 @@
 <h1>Orders#index</h1>
 <p>Find me in app/views/orders/index.html.erb</p>
-<% @orders.each do |order| %>
-					<tr>
-						<th>
-							<!-- itemテーブルのgenre_idカラムに　genre.idを追加し、genre.nameを表示させる -->
-							<th><%= order.member.postal_code %></th>
-							<th><%= order.member.address %></th>
-							<th><%= order.member.last_name %></th>
-							<th><%= order.member.first_name %></th>
+		<h4>請求情報</h4>
+		<table class="table table-bordered">
+		<% @orders.each do |order| %>
 
-						</th>
-					</tr>
-				<% end %>
-
+			<!-- カート内商品の繰り返し必要 -->
+			<thead>
+				<tr>
+					<th>注文日</th>
+					<th>配送先</th>
+					<th>注文商品</th>
+					<th>支払い金額</th>
+					<th>ステータス</th>
+					<th>注文詳細</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= order.created_at %></td>
+					<td><%= order.postal_code %><br>
+					<%= order.delivery_target_address %><br>
+					<%= order.addressee %></td>
+					<td><%= order %></td>
+					<td><%= order %></td>
+					<td><%= order.status %></td>
+					<td>
+						<%= link_to '注文詳細', order_path(order.id), class: "btn btn-info" %>
+					</td>
+				</tr>
+			</tbody>
+		<% end %>
+		</table>
