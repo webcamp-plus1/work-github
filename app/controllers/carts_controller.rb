@@ -15,7 +15,7 @@ class CartsController < ApplicationController
    end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_member.cart_items
   end
 
   def update
