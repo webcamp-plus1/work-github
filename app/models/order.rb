@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
 
 # でーたべーすには保存しないカラムの追加
-  attr_accessor :d_address, :destination
+  attr_accessor :d_address, :destination, :delivery_id
 
 
 end

@@ -6,11 +6,11 @@
 	<table>
 		<tr>
 			<th>
-        <%= f.radio_button :payment_method, :card %>
+        <%= f.radio_button :payment_method, :クレジットカード %>
         <%= f.label :payment_method, 'クレジットカード' %>
       </th>
       <th>
-        <%= f.radio_button :payment_method, :bank %>
+        <%= f.radio_button :payment_method, :銀行振り込み %>
         <%= f.label :payment_method, '銀行振込' %>
       </th>
 		</tr>
@@ -34,7 +34,7 @@
         <%= f.radio_button :d_address, :deliveries %>
         <%= f.label :d_address, '登録済住所から選択' %>
       </th>
-          <th><%= f.collection_select :member_id, Delivery.all, :id, :destination %>
+          <th><%= f.collection_select :delivery_id, current_member.deliveries, :id, :view_address_detail %>
           </th>
     </tr>
     <tr>
