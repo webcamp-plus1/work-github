@@ -11,14 +11,16 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.member_id = current_member.id
+    @order.member = current_member
     if @order.d_address == 'current_member'
       @order.postal_code = current_member.postal_code
       @order.delivery_target_address = current_member.address
       @order.addressee = current_member.last_name + current_member.first_name
     elsif @order.d_address == 'deliveries'
-    *  @order.delivery_target_address = current_member.postal_code + current_member.address
-    *  @order.addressee = current_member.last_name + current_member.first_name
+      @add = Delivery.find_by(id: params[:order][:member_id])
+      @order.postal_code = @add.postal_code
+      @order.delivery_target_address = @add.destination
+      @order.addressee = @add.addressee
     elsif @order.d_address == 'new_deli'
       @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
       @delivery.save
@@ -49,7 +51,6 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination)
+      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id)
     end
 end
- 
