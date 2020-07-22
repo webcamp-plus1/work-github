@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   def new
     @order = Order.new
+    @deliveries = Delivery.all
+    @member_id = current_member.id
+    # orenge = current_member.postal_code + current_member.address
   end
 
   def cnfirm
@@ -10,21 +13,19 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     if @order.d_address == 'current_member'
-      @order.delivery_target_address = current_member.postal_code + current_member.address 
-      @order.addressee = current_member.last_name + current_member.first_name     
+      @order.delivery_target_address = current_member.postal_code + current_member.address
+      @order.addressee = current_member.last_name + current_member.first_name
     elsif @order.d_address == 'deliveries'
-    *  @order.delivery_target_address = current_member.postal_code + current_member.address 
-    *  @order.addressee = current_member.last_name + current_member.first_name     
-      
+    *  @order.delivery_target_address = current_member.postal_code + current_member.address
+    *  @order.addressee = current_member.last_name + current_member.first_name
     elsif @order.d_address == 'new_deli'
-    * @order.delivery_target_address = current_member.postal_code + current_member.address 
-    *@order.addressee = current_member.last_name + current_member.first_name  
-      
-      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination)
+      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
       @delivery.save
+      @order.delivery_target_address = @order.postal_code + @order.destination
+      @order.addressee = @order.addressee
     end
     if @order.save
-      redirect_to request.referer
+      redirect_to order_path(@order)
     else
       @orders = Order.all
       redirect_to request.referer
