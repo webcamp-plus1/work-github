@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :member
 
-  enum payment_method: { card: 1, bank: 2 }
+  enum payment_method: { クレジットカード: 1, 銀行振り込み: 2 }
 
 
 # でーたべーすには保存しないカラムの追加
