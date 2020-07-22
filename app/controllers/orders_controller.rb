@@ -7,21 +7,23 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+        @order1 = current_member.orders.new(order1_params)
         @order = Order.find(params[:id])
-        @order = current_member.orders.new(order_params)
-        @order.save
+  end
+
+  def post
+        @order1 = current_member.orders.new(order1_params)
+        @order1.save
         @cart_items = current_member.cart_items.all
         @cart_items.each do |cart_item|
-        @order_items = cart_item
-        @order_items.item_id = cart_item.item.id
-        @order_items.item.name = cart_item.item.name
-        @order_items.orderded_price = cart_item.item.tax_excluded_price
-        @order_items.count = cart_item.count
-        @order_items.save
-　　　　 current_user.cart_items.destroy_all
+        @order_item = cart_item
+        @order_item.item_id = cart_item.item.id
+        @order_item.count = cart_item.count
+        @order_item.save
      end
      redirect_to orders_done_path
   end
+
 
   def create
     @order = Order.new(order_params)
@@ -64,6 +66,9 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id, :name)
+      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id)
+    end
+    def order1_params
+      params.permit(:item_id, :order_id, :orderded_price, :count)
     end
 end

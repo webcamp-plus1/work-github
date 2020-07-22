@@ -62,7 +62,7 @@
 </div>
 <div class="row">
 	<div class="col-md-1 col-md-offset-5">
-		<%= form_for(@order) do |f| %>
+		<%= form_for(@order, url: order_confirm_post_path, method: :post) do |f| %>
 			<%= f.submit '購入を確定する', class: 'btn btn-success' %>
 		<% end %>
 	</div>

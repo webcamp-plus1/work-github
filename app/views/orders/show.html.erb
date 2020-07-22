@@ -5,23 +5,23 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>注文日</th>
-			<th><%= @order.created_at %></th>
+			<th><%= @order_item.order.created_at %></th>
 		</tr>
 		<tr>
 			<th>配送先</th>
-			<th><%= @order.postal_code %><br>
-			<%= @order.delivery_target_address %><br>
-			<%= @order.addressee %></th>
+			<th><%= @order_item.order.postal_code %><br>
+			<%= @order_item.order.delivery_target_address %><br>
+			<%= @order_item.order.addressee %></th>
 		</tr>
 		<tr>
 			<th>支払方法</th>
-			<th><% if (@order.payment_method == 1) %>銀行支払
+			<th><% if (@order_item.order.payment_method == 1) %>銀行支払
 				<% else %>クレジットカード<% end %>
 			</th>
 		</tr>
 		<tr>
 			<th>ステータス</th>
-			<th><%= @order.status %></th>
+			<th><%= @order_item.order.status %></th>
 		</tr>
 	</table>
 </div>
@@ -64,8 +64,8 @@
 					<td><%= (f.item.tax_excluded_price * 1.1).round(0) %></td>
 					<% end %>
 
-					<td><%= @order.member.cart_items.count %></td>
-					<td><%= @order.payment_method %></td>
+					<td><%= @order_item.order.member.cart_items.count %></td>
+					<td><%= @order_item.order.payment_method %></td>
 				</tr>
 			</tbody>
 		</table>
