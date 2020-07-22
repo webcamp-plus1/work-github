@@ -3,7 +3,9 @@ class Order < ApplicationRecord
 
   enum payment_method: { card: 1, bank: 2 }
 
+
 # でーたべーすには保存しないカラムの追加
-  attr_accessor :d_address, :new_address, :destination
+  attr_accessor :d_address, :destination
+
 
 end
