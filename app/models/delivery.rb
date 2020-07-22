@@ -4,4 +4,5 @@ class Delivery < ApplicationRecord
 	def ffff
 		postal_code + destination + addressee
 	end
+
 end

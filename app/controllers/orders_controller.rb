@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    @cart_items = CartItem.all
   end
 
   def create
@@ -29,7 +30,7 @@ class OrdersController < ApplicationController
       @order.addressee = @order.addressee
     end
     if @order.save
-      redirect_to order_path(@order)
+      redirect_to order_confirm_path
     else
       @orders = Order.all
       redirect_to request.referer
@@ -45,7 +46,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @cart_items = CartItem.all
   end
 
 

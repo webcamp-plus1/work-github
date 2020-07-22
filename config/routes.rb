@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  get 'orders/:id/confirm', to: 'orders#confirm'
+  get 'orders/confirm', to: 'orders#confirm', as: 'order_confirm'
+  post 'orders/confirm', to: 'orders#confirm', as: 'order_confirm_post'
   get 'orders/done', to: 'orders#done'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
