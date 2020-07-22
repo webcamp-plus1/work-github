@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
 
   get 'orders/:id/confirm', to: 'orders#confirm', as: 'order_confirm'
-  post 'orders/:id/confirm', to: 'orders#confirm', as: 'order_confirm_post'
+  post 'orders/:id/confirm', to: 'orders#post', as: 'order_confirm_post'
   get 'orders/done', to: 'orders#done'
   resources :orders
 
