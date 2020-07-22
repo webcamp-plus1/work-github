@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     # orenge = current_member.postal_code + current_member.address
   end
 
-  def cnfirm
+  def confirm
   end
 
   def create
@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @cart_items = CartItem.all
   end
 
 
