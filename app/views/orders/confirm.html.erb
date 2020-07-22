@@ -1,41 +1,69 @@
-<h1>Orders#confirm</h1>
-<div class="row">
-	<div class="col-9">
-		<h3>注文情報確認</h3>
+<h3>注文情報確認</h3>
+
+<div class=row>
+	<div class="col-md-8">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>商品名</th>
-					<th>単価(税込)</th>
+					<th>単価（税込）</th>
 					<th>数量</th>
 					<th>小計</th>
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-			<% @sum = 0 %>
-				<% @cart_items.each do |cart_item| %>
-					<tr>
-					　　 <td>
-							<%= attachment_image_tag cart_item.item, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg" %>
-						</td>
-						<td>
-							<%= cart_item.item.name %>
-						</td>
-						<td>
-							<%= (cart_item.item.tax_excluded_price * 1.1 ).round(0) %>
-						</td>
-						<td>
-							<%= cart_item.count %>
-						</td>
-						<td>
-							<%= ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>円
-						</td>
-							<% @sum += ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>
-					</tr>
+				<% @sum = 0 %>
+				<% current_member.cart_items.each do |f| %>
+				<tr>
+					<td><%= f.item.name %></td>
+					<td><%= (f.item.tax_excluded_price * 1.1).round(0) %></td>
+					<td><%= f.count %></td>
+					<td><%= ((f.item.tax_excluded_price * 1.1) * (f.count)).round(0) %></td>
+					<% @sum += ((f.item.tax_excluded_price * 1.1) * (f.count)).round(0) %>
+				</tr>
 				<% end %>
 			</tbody>
-				支払い方法 <%= @order.payment_method %>
-				お届け先   <%= @order.delivery_target_address %>
-						  <%= @order.addressee %>
 		</table>
+	</div>
+	<div class="col-md-4">
+		<table class="table table-bordered">
+			<tr>
+				<th>送料</th>
+				<th>800円</th>
+			</tr>
+			<tr>
+				<th>商品合計</th>
+				<th><%= @sum %>円</th>
+			</tr>
+			<tr>
+				<th>請求合計</th>
+				<th><%= @sum + 800 %>円</th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10">
+		<div class=col-md-6>
+		<h4>請求情報</h4>
+		<table>
+			<tr>
+				<th>支払方法</th>
+				<th><%= @order.payment_method %></th>
+			</tr>
+			<tr>
+				<th>お届け先</th>
+				<th><%= @order.postal_code %><%= @order.delivery_target_address %><%= @order.addressee %></th>
+			</tr>
+		</table>
+	</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-1 col-md-offset-5">
+		<%= form_for(@order) do |f| %>
+			<%= f.submit '購入を確定する', class: 'btn btn-success' %>
+		<% end %>
+	</div>
+</div>
