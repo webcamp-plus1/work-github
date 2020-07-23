@@ -12,8 +12,6 @@ class OrdersController < ApplicationController
 
   def post
     @order_item = OrderItem.new
-
-
     @cart_items = current_member.cart_items.all
       @cart_items.each do |cart_item|
         @order_item.item_id = cart_item.item.id
@@ -22,20 +20,6 @@ class OrdersController < ApplicationController
       end
       redirect_to orders_done_path
   end
-
-  def create
-    cart_item = CartItem.find_by(member_id: current_member.id, item_id: params[:cart_item][:item_id])
-
-    if  cart_item
-    # cart_item が存在する場合の意味（.present を省略している）
-        cart_item.count += params[:cart_item][:count].to_i
-      else
-        cart_item = CartItem.new(cart_item_params)
-        cart_item.member_id = current_member.id
-      end
-        cart_item.save
-        redirect_to members_carts_path
-   end
 
   def create
     @order = Order.new(order_params)
@@ -68,7 +52,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_member.orders
   end
 
   def show
