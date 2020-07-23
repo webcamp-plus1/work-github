@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
         @cart_items = current_member.cart_items.all
         @cart_items.each do |cart_item|
           @order_item = OrderItem.new
-          @order_item.order_id = current_member.order.id
+          @order_item.order_id = @order.id
           @order_item.item_id = cart_item.item.id
           @order_item.count = cart_item.count
           @order_item.orderded_price = cart_item.item.tax_excluded_price
