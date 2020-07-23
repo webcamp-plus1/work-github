@@ -1,55 +1,55 @@
 <div class="row">
 	<h1>Homes#top<%= link_to "管理者ログイン", new_admin_session_path %></h1>
 </div>
-
-<div class="container-fluid">
-	<div class="row sampleRow">
-		<div class="col-md-2">
-			<table class="table table-bordered">
-				<tr>
-					<th>ジャンル検索</th>
-				</tr>
-				<% @genres.each do |genre| %>
+<body class="top-page">
+	<div class="container-fluid">
+		<div class="row sampleRow">
+			<div class="col-md-2">
+				<table class="table table-bordered">
 					<tr>
-						<th>
-							<!-- itemテーブルのgenre_idカラムに　genre.idを追加し、genre.nameを表示させる -->
-							<%= link_to item_search_path(genre_id: genre.id) do %>
-								<%= genre.name %>
-							<% end %>
-						</th>
+						<th>ジャンル検索</th>
 					</tr>
-				<% end %>
-			</table>
-		</div>
-		
-		<div class="col-md-10" >
-			<div class="main-visual">
-		    <div class="main-visual-content">
-		      <p class="main-visual-text">
-		        ようこそ、NaganoCakeへ！<br>
-		        このサイトは、ケーキ販売のECサイトになります。<br>
-		        会員でない方も商品の閲覧はできますが、<br>
-		        購入には会員登録が必要になります。
-		      </p>
-		    </div>
-		  </div>
+					<% @genres.each do |genre| %>
+						<tr>
+							<td>
+								<!-- itemテーブルのgenre_idカラムに　genre.idを追加し、genre.nameを表示させる -->
+								<%= link_to item_search_path(genre_id: genre.id) do %>
+									<%= genre.name %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				</table>
+			</div>
+			<div class="col-md-8" >
+				<div class="main-visual">
+			    <div class="main-visual-content">
+			      <p class="main-visual-text">
+			        ようこそ、NaganoCakeへ！<br>
+			        このサイトは、ケーキ販売のECサイトになります。<br>
+			        会員でない方も商品の閲覧はできますが、<br>
+			        購入には会員登録が必要になります。
+			      </p>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-10 col-md-offset-2">
-		<h2>オススメ商品</h2>
-		<% @items.each do |item| %>
-			<div class="col-xs-6 col-md-3">
-				<%= link_to item_path(item) do %>
-					<%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: '100×100' %></br>
-				<% end %>
-				<%= item.name %></br>
-		    ¥<%= item.tax_excluded_price %>
-		  </div>
-		<% end %>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-2">
+			<h3>オススメ商品</h3>
+			<% @items.first(4).each do |item| %>
+				<div class="col-xs-6 col-md-3">
+					<%= link_to item_path(item) do %>
+						<%= attachment_image_tag item, :image, :fill, 140, 100, format: 'jpeg', fallback: "no_image.jpg", size: '140×100' %></br>
+					<% end %>
+					<%= item.name %></br>
+			    ¥<%= item.tax_excluded_price %>
+			  </div>
+			<% end %>
+		</div>
 	</div>
-</div>
-<div class="text-right">
-	<%= link_to 'もっと見る＞', items_path %>
-</div>
+	<div class="text-right">
+		<%= link_to 'もっと見る＞', items_path %>
+	</div>
+</body>
