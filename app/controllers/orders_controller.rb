@@ -7,21 +7,6 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.find(params[:id])
-  end
-
-  def post
-    @order_item = OrderItem.new
-    @cart_items = current_member.cart_items.all
-      @cart_items.each do |cart_item|
-        @order_item.item_id = cart_item.item.id
-        @order_item.count = cart_item.count 
-        @order_item.save
-      end
-      redirect_to orders_done_path
-  end
-
-  def create
     @order = Order.new(order_params)
     @order.member = current_member
     if @order.d_address == 'current_member'
@@ -40,13 +25,22 @@ class OrdersController < ApplicationController
       @order.delivery_target_address = @order.destination
       @order.addressee = @order.addressee
     end
-    if @order.save
-      redirect_to order_confirm_path(@order)
-    else
-      @orders = current_member.order
-      redirect_to request.referer
-    end
   end
+
+  def create
+      @order.save
+      @cart_items = current_member.cart_items.all
+      @cart_items.each do |cart_item|
+        @order_item = OrderItem.new
+        @order_item.order_id = current_member.order.id
+        @order_item.item_id = cart_item.item.id
+        @order_item.count = cart_item.count
+        @order_item.orderded_price = cart_item.item.tax_excluded_price
+        @order_item.save
+      end
+      redirect_to orders_done_path
+  end
+
 
   def done
   end
