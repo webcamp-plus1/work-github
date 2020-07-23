@@ -1,5 +1,5 @@
 <h3>注文情報確認</h3>
-
+<%= form_for(@order, url: order_confirm_post_path, method: :post) do |f| %>
 <div class=row>
 	<div class="col-md-8">
 		<table class="table table-bordered">
@@ -37,7 +37,8 @@
 			</tr>
 			<tr>
 				<th>請求合計</th>
-				<th><%= @sum + 800 %>円</th>
+				<th>
+					<%= @sum + 800 %>円</th>
 			</tr>
 		</table>
 	</div>
@@ -62,8 +63,9 @@
 </div>
 <div class="row">
 	<div class="col-md-1 col-md-offset-5">
-		<%= form_for(@order, url: order_confirm_post_path, method: :post) do |f| %>
+			<% f.hidden_field :orderded_price, :value => @sum %>
 			<%= f.submit '購入を確定する', class: 'btn btn-success' %>
-		<% end %>
+
 	</div>
 </div>
+<% end %>

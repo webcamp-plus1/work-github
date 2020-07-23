@@ -7,23 +7,35 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-        @order1 = current_member.orders.new(order1_params)
-        @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def post
-        @order1 = current_member.orders.new(order1_params)
-        @order1.save
-        @cart_items = current_member.cart_items.all
-        @cart_items.each do |cart_item|
-        @order_item = cart_item
+    @order_item = OrderItem.new
+
+
+    @cart_items = current_member.cart_items.all
+      @cart_items.each do |cart_item|
         @order_item.item_id = cart_item.item.id
-        @order_item.count = cart_item.count
+        @order_item.count = cart_item.count 
         @order_item.save
-     end
-     redirect_to orders_done_path
+      end
+      redirect_to orders_done_path
   end
 
+  def create
+    cart_item = CartItem.find_by(member_id: current_member.id, item_id: params[:cart_item][:item_id])
+
+    if  cart_item
+    # cart_item が存在する場合の意味（.present を省略している）
+        cart_item.count += params[:cart_item][:count].to_i
+      else
+        cart_item = CartItem.new(cart_item_params)
+        cart_item.member_id = current_member.id
+      end
+        cart_item.save
+        redirect_to members_carts_path
+   end
 
   def create
     @order = Order.new(order_params)
@@ -47,7 +59,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to order_confirm_path(@order)
     else
-      @orders = Order.all
+      @orders = current_member.order
       redirect_to request.referer
     end
   end
