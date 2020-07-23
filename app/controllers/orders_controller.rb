@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
      redirect_to orders_done_path
   end
 
-
   def create
     @order = Order.new(order_params)
     @order.member = current_member
@@ -56,7 +55,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_member.orders
   end
 
   def show
