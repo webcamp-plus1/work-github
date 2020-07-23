@@ -7,21 +7,18 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-        @order1 = current_member.orders.new(order1_params)
-        @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def post
-        @order1 = current_member.orders.new(order1_params)
-        @order1.save
-        @cart_items = current_member.cart_items.all
-        @cart_items.each do |cart_item|
-        @order_item = cart_item
+    @order_item = OrderItem.new
+    @cart_items = current_member.cart_items.all
+      @cart_items.each do |cart_item|
         @order_item.item_id = cart_item.item.id
-        @order_item.count = cart_item.count
+        @order_item.count = cart_item.count 
         @order_item.save
-     end
-     redirect_to orders_done_path
+      end
+      redirect_to orders_done_path
   end
 
   def create
@@ -46,7 +43,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to order_confirm_path(@order)
     else
-      @orders = Order.all
+      @orders = current_member.order
       redirect_to request.referer
     end
   end

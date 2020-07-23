@@ -38,7 +38,7 @@
 
 		<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
 		<%= f.number_field :count,min:1,max:10 %>
-		<%= f.hidden_field :item_id, :value => @item.id %>　
+		<%= f.hidden_field :item_id, :value => @item.id %>
 		<!-- item_id をcount数だけ @item.id に値を渡す（hiddenは隠れた処理） -->
 		<%= f.submit 'カートに入れる' %>
 		<% end %>
