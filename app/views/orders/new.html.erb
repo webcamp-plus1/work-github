@@ -1,7 +1,7 @@
 <h1>Orders#new</h1>
 <div class=“row”>
 <h3>注文情報入力</h3>
-<%= form_for(@order) do |f| %>
+<%= form_for(@order, url: "/orders/confirm") do |f| %>
 <h3>支払い方法</h3>
 	<table>
 		<tr>
