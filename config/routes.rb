@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'homes/about', to: 'homes#about'
 
   namespace :admins do
+    get 'admins/member', to: 'members#top', as: 'admin_top'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
     resources :members

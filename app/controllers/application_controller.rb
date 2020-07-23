@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    items_path(resource)
+    case resource
+     when Admin
+      admins_admin_top_path
+     when Member
+      items_path(resource)
+    end
   end
 
   def after_sign_out_path_for(resource)
