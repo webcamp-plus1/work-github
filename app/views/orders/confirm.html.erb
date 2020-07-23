@@ -1,5 +1,4 @@
 <h3>注文情報確認</h3>
-<%= form_for(@order, url: "/orders/create") do |f| %>
 <div class=row>
 	<div class="col-md-8">
 		<table class="table table-bordered">
@@ -13,13 +12,13 @@
 			</thead>
 			<tbody>
 				<% @sum = 0 %>
-				<% current_member.cart_items.each do |f| %>
+				<% current_member.cart_items.each do |cart_item| %>
 				<tr>
-					<td><%= f.item.name %></td>
-					<td><%= (f.item.tax_excluded_price * 1.1).round(0) %></td>
-					<td><%= f.count %></td>
-					<td><%= ((f.item.tax_excluded_price * 1.1) * (f.count)).round(0) %></td>
-					<% @sum += ((f.item.tax_excluded_price * 1.1) * (f.count)).round(0) %>
+					<td><%= cart_item.item.name %></td>
+					<td><%= (cart_item.item.tax_excluded_price * 1.1).round(0) %></td>
+					<td><%= cart_item.count %></td>
+					<td><%= ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0) %></td>
+					<% @sum += ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0) %>
 				</tr>
 				<% end %>
 			</tbody>
@@ -62,10 +61,15 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-1 col-md-offset-5">
-			<% f.hidden_field :orderded_price, :value => @sum %>
+	<%= form_for(@order, url: "/orders/create") do |f| %>
+		<div class="col-md-1 col-md-offset-5">
+			<%= f.hidden_field :payment_method %>
+			<%= f.hidden_field :postal_code %>
+			<%= f.hidden_field :addressee %>
+			<%= f.hidden_field :delivery_target_address %>
+			<%= f.hidden_field :orderded_price, :value => @sum %>
 			<%= f.submit '購入を確定する', class: 'btn btn-success' %>
-
-	</div>
+		</div>
+	<% end %>
 </div>
-<% end %>
+

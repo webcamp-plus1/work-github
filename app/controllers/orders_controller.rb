@@ -28,17 +28,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-      @order.save
-      @cart_items = current_member.cart_items.all
-      @cart_items.each do |cart_item|
-        @order_item = OrderItem.new
-        @order_item.order_id = current_member.order.id
-        @order_item.item_id = cart_item.item.id
-        @order_item.count = cart_item.count
-        @order_item.orderded_price = cart_item.item.tax_excluded_price
-        @order_item.save
+      @order = Order.new(order_params)
+      @order.member = current_member
+      if @order.save
+        @cart_items = current_member.cart_items.all
+        @cart_items.each do |cart_item|
+          @order_item = OrderItem.new
+          @order_item.order_id = current_member.order.id
+          @order_item.item_id = cart_item.item.id
+          @order_item.count = cart_item.count
+          @order_item.orderded_price = cart_item.item.tax_excluded_price
+          @order_item.save
+        end
+        redirect_to orders_done_path
+      else
+        render 'confirm'
       end
-      redirect_to orders_done_path
   end
 
 
