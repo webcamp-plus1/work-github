@@ -52,11 +52,11 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_member.orders
+    order_item = OrderItem.all
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_item = OrderItem.find_by(order_id: @order.id, item_id: params[:item_id])
     @order_items = OrderItem.all
   end
 
