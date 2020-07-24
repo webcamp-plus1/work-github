@@ -55,15 +55,14 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order_items = OrderItem.all
     @order = Order.find(params[:id])
+    @order_item = OrderItem.find_by(order_id: @order.id, item_id: params[:item_id])
   end
 
 
   private
     def order_params
       params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id)
-    end
-    def order1_params
-      params.permit(:item_id, :order_id, :orderded_price, :count)
     end
 end
