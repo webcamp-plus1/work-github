@@ -27,7 +27,7 @@ class MembersController < ApplicationController
     flash[:notice] = "ありがとうございました、またのご利用を心からお待ちしております。"
     redirect_to new_member_session_path
   end
-
+  
   private
 
   def member_params

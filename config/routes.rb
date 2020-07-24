@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :items
     resources :members
   end
-
+  get 'members/password/edit', to: 'members#edit'
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
   patch '/members/unsubscribe' => 'members#unsubscribe', as: 'members_unsubscribe'
   get '/genres/:genre_id' => 'items#search' , as: 'item_search'
