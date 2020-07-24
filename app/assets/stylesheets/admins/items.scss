@@ -1,3 +1,42 @@
 // Place all the styles related to the admins::items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admins-item-index-title {
+	margin-top: 50px;
+	margin-bottom: 10px;
+	width: 102px;
+	background: #eeeeee;
+	padding: 10px 15px;
+}
+
+.admins-item-show-title {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	width: 102px;
+	background: #eeeeee;
+	padding: 10px 15px;
+}
+
+.admins-item-new-title {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	width: 138px;
+	background: #eeeeee;
+	padding: 10px 15px;
+}
+
+.admins-item-edit-title {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	width: 102px;
+	background: #eeeeee;
+	padding: 10px 15px;
+}
+
+.admins-item-index-btn {
+	margin-left: 35px;
+	margin-bottom: 15px;
+	background-color: #fff;
+	border-radius: 50%;
+}

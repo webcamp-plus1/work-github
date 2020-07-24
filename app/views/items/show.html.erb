@@ -1,46 +1,48 @@
-<h1>Items#show</h1>
-
-<div class="row">
-		<div class="col-xs-6 col-md-2">
-			<table class="table table-bordered">
-					<tr>
-						<th>ジャンル検索</th>
-					</tr>
-						<% @genres.each do |genre| %>
-					<tr>
-						<th>
-						<%= link_to item_search_path(genre_id: genre.id) do %>
-						<%= genre.name %>
-						<% end %>
-						</th>
-					</tr>
+<div class="row item-index-genre-table">
+	<div class="col-md-2">
+		<table class="table table-bordered">
+			<tr>
+				<th>ジャンル検索</th>
+			</tr>
+				<% @genres.each do |genre| %>
+			<tr>
+				<th>
+				<%= link_to item_search_path(genre_id: genre.id) do %>
+				<%= genre.name %>
 				<% end %>
-			</table>
-		</div>
-	<div class="col-md-10">
+				</th>
+			</tr>
+				<% end %>
+		</table>
+	</div>
+
+	<div class="col-md-4 col-md-offset-1">
 		<table>
 			<tr>
-			　　 <th><%= attachment_image_tag @item, :image, :fill, 150, 140, format: 'jpeg', fallback: "no_image.jpg" %></th>
-			</tr>
-			<tr>
-				<th>商品名</th>
-				<th><%= @item.name %></th>
-			</tr>
-			<tr>
-				<th>商品説明</th>
-				<th><%= @item.description %></th>
-			</tr>
-			<tr>
-				<th>￥</th>
-				<th><%= (@item.tax_excluded_price * 1.1).round(0) %>円（税込）</th>
+				<th><%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %></th>
 			</tr>
 		</table>
+	</div>
 
+	<div class="col-md-4">
+		<table class="table-condensed">
+		<tr>
+			<th><%= @item.name %></th>
+		</tr>
+		<tr>
+			<th><%= @item.description %></th>
+		</tr>
+		<tr>
+			<th>￥<%= (@item.tax_excluded_price * 1.1).round(0) %>円（税込）</th>
+		</tr>
+	</table>
+	<div class="item-show-btn">
 		<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
-		<%= f.number_field :count,min:1,max:10 %>
+		<%= f.number_field :count,min:1,max:100 %>
 		<%= f.hidden_field :item_id, :value => @item.id %>
 		<!-- item_id をcount数だけ @item.id に値を渡す（hiddenは隠れた処理） -->
-		<%= f.submit 'カートに入れる' %>
+		<%= f.submit 'カートに入れる', class: "btn btn-primary" %>
 		<% end %>
+	</div>
 	</div>
 </div>
