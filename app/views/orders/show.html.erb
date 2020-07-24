@@ -31,14 +31,15 @@
 
 		<!-- 商品合計金額計算 -->
 		<% @sum = 0 %>
-		<% current_member.cart_items.each do |f| %>
-		<% @sum += ((f.item.tax_excluded_price * 1.1) * (f.count)).round(0) %>
+		<% @order.order_item.each do |order_item| %>
+		<% @sum += ((order_item.orderded_price) * (order_item.count)) %>
 		<% end %>
+
 
 	<table class="table table-bordered">
 		<tr>
 			<th class="t-color">商品合計</th>
-			<th><%= @sum %>円</th>
+			<th><%= ((@sum) * 1.1).round(0) %>円</th>
 		</tr>
 		<tr>
 			<th class="t-color">配送料</th>
@@ -46,7 +47,7 @@
 		</tr>
 		<tr>
 			<th class="t-color">ご請求額</th>
-			<th><%= @sum + 800 %>円</th>
+			<th><%= (((@sum) * 1.1) + 800).round(0) %>円</th>
 		</tr>
 	</table>
 </div>
@@ -63,16 +64,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @order_items.each do |order_item| %>
+				<% @order.order_item.each do |order_item| %>
 				<tr>
 					<td>
-						<%= @order_item.item.name %>
+						<%= order_item.item.name %>
 					</td>
-					<td><%= (@order_item.orderded_price * 1.1).round(0) %></td>
-					<td><%= f.count %></td>
-					<th><% if (@order_item.payment_method == 1) %>銀行支払
-						<% else %>クレジットカード<% end %>
-					</th>
+					<td>
+						<%= (order_item.orderded_price * 1.1).round(0) %>
+					</td>
+					<td>
+						<%= order_item.count %>
+					</td>
+					<td>
+						<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0) %>
+					</td>
 					<% end %>
 				</tr>
 			</tbody>
