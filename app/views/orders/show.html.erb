@@ -4,23 +4,23 @@
 	<h4>注文情報</h4>
 	<table class="table table-bordered">
 		<tr>
-			<th>注文日</th>
+			<th class="t-color">注文日</th>
 			<th><%= @order.created_at.to_s(:datetime_jp) %></th>
 		</tr>
 		<tr>
-			<th>配送先</th>
+			<th class="t-color">配送先</th>
 			<th><%= @order.postal_code %><br>
 			<%= @order.delivery_target_address %><br>
 			<%= @order.addressee %></th>
 		</tr>
 		<tr>
-			<th>支払方法</th>
+			<th class="t-color">支払方法</th>
 			<th><% if (@order.payment_method == 1) %>銀行支払
 				<% else %>クレジットカード<% end %>
 			</th>
 		</tr>
 		<tr>
-			<th>ステータス</th>
+			<th class="t-color">ステータス</th>
 			<th><%= @order.status %></th>
 		</tr>
 	</table>
@@ -37,15 +37,15 @@
 
 	<table class="table table-bordered">
 		<tr>
-			<th>商品合計</th>
+			<th class="t-color">商品合計</th>
 			<th><%= @sum %>円</th>
 		</tr>
 		<tr>
-			<th>配送料</th>
+			<th class="t-color">配送料</th>
 			<th>800円</th>
 		</tr>
 		<tr>
-			<th>ご請求額</th>
+			<th class="t-color">ご請求額</th>
 			<th><%= @sum + 800 %>円</th>
 		</tr>
 	</table>
@@ -54,7 +54,7 @@
 	<div class="col-md-10">
 		<h4>請求情報</h4>
 		<table class="table table-bordered">
-			<thead style="background-color: #d3d3d3;">
+			<thead class="t-color">
 				<tr>
 					<th>商品</th>
 					<th>単価(税込)</th>
