@@ -33,12 +33,12 @@ class OrdersController < ApplicationController
       if @order.save
         @cart_items = current_member.cart_items.all
         @cart_items.each do |cart_item|
-          @order_item = OrderItem.new
-          @order_item.order_id = @order.id
-          @order_item.item_id = cart_item.item.id
-          @order_item.count = cart_item.count
-          @order_item.orderded_price = cart_item.item.tax_excluded_price
-          @order_item.save
+          @order_items = OrderItem.new
+          @order_items.order_id = @order.id
+          @order_items.item_id = cart_item.item.id
+          @order_items.count = cart_item.count
+          @order_items.orderded_price = cart_item.item.tax_excluded_price
+          @order_items.save
         end
         redirect_to orders_done_path
       else
@@ -55,9 +55,9 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_items = OrderItem.all
     @order = Order.find(params[:id])
     @order_item = OrderItem.find_by(order_id: @order.id, item_id: params[:item_id])
+    @order_items = OrderItem.all
   end
 
 
