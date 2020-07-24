@@ -19,13 +19,12 @@
 			<th><%= @order.payment_method %></th>
 		</tr>
 		<tr>
-			<%= form_for(@order) do |f| %>
+			<%= form_for(@order, url: admins_order_path) do |f| %>
 			<th>注文ステータス</th>
 			<th>
-				<%= f.select :status, [["入金待ち", 1], ["入金確認", 2], ["製作中", 3], ["発送準備中", 4], ["発送済み", 5]] %>
+				<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 制作完了: 'done'} %>
 			</th>
 			<th><%= f.submit "更新", class: "btn btn-primary" %></th>
-			<% end %>
 		</tr>
 	</tbody>
 </table>
@@ -60,11 +59,11 @@
 						<td>
 							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0) %>
 						</td>
-
-							<td>
-
-							</td>
-							<td></td>
+							<%= fields_for(@order_item) do |i| %>
+								<td><%= i.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %></td>
+								<td><%= i.submit "更新", class: "btn btn-primary" %></td>
+								<% end %>
+							<% end %>
 					<% end %>
 				</tr>
 			</tbody>

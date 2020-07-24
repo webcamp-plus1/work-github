@@ -21,7 +21,14 @@
 					</td>
 					<td><%= order.member.last_name %><%= order.member.first_name %></td>
 					<td><%= order.order_item.count %></td>
-					<td><%= order.status %></td>
+					<td>
+						<% if (order.status == 'waiting')%>入金待ち
+	     			<% elsif (order.status == 'confirm')%>入金確認
+	     			<% elsif (order.status == 'in_production')%>製作中
+	     			<% elsif (order.status == 'preparing')%>発送準備中
+	     			<% elsif (order.status == 'done')%>発送済み
+	     			<% end %>
+		     	</td>
 				</tr>
 
 			<% end %>
