@@ -63,14 +63,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% current_member.cart_items.each do |f| %>
+				<% @order_items.each do |order_item| %>
 				<tr>
 					<td>
-						<%= f.item.name %>
+						<%= @order_item.item.name %>
 					</td>
-					<td><%= (f.item.tax_excluded_price * 1.1).round(0) %></td>
+					<td><%= (@order_item.orderded_price * 1.1).round(0) %></td>
 					<td><%= f.count %></td>
-					<th><% if (@order.payment_method == 1) %>銀行支払
+					<th><% if (@order_item.payment_method == 1) %>銀行支払
 						<% else %>クレジットカード<% end %>
 					</th>
 					<% end %>
