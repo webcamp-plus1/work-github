@@ -1,7 +1,5 @@
 <div class="row">
   <h4 class="col-xs-3 title-color" style="margin-left: 300px;">会員の方はこちらからログイン</h4>
-<p><%= flash[:notice] %></p>
-<p><%= flash[:error] %></p>
 </div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="row">

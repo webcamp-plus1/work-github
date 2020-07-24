@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
     resources :members
+    resources :orders, only: [:index, :show, :update]
   end
   get 'members/password/edit', to: 'members#edit'
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'

@@ -56,8 +56,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_item = OrderItem.find_by(order_id: @order.id, item_id: params[:item_id])
-    @order_items = OrderItem.all
   end
 
 

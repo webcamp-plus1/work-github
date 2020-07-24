@@ -27,7 +27,7 @@
               <li>管理者ログイン中</h1>
               <li class=""><%= link_to "商品一覧", admins_items_path %></li>
               <li class=""><%= link_to "会員一覧", admins_members_path %></li>
-              <li class=""><%= link_to "注文履歴一覧", "#" %></li>
+              <li class=""><%= link_to "注文履歴一覧", admins_orders_path %></li>
               <li class=""><%= link_to "ジャンル一覧", admins_genres_path %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             <% else %>
