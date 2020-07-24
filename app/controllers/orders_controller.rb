@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_member.orders
+    @orders = Order.page(params[:page]).reverse_order.per(4)
     order_item = OrderItem.all
   end
 
