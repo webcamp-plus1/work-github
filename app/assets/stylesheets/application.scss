@@ -16,9 +16,6 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
-.item-index {
-	height: 20rem;
-}
 
 header{
 	.navbar-left{
@@ -34,11 +31,11 @@ header{
 }
 
 .t-color{
-	background-color: #d3d3d3;
+	background-color: #eeeeee;
 }
 
 .title-color{
-	background-color: #d0d0d0;
+	background-color: #eeeeee;
 }
 
 .w-50{
@@ -47,4 +44,26 @@ header{
 
 .input-mysize{
 	width: 430px;
+}
+
+.nav-btn {
+  color: #888888;
+	font-size: 12px;
+	font-weight: bold;
+  display: inline-block;
+  margin: 25px 10px 10px 10px;
+  text-decoration: none;
+  border: 2px;
+  border-radius : 8px;
+  background: #fff;
+  box-shadow: 0px 3px 5px #888888;
+}
+
+.address-area {
+	width: 407px;
+	margin-left: 157px;
+}
+
+.phone-number-area {
+	margin-left: 37px;
 }

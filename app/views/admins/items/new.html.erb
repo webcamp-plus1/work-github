@@ -1,36 +1,45 @@
-<%= form_for(@item, url: admins_items_path) do |f| %>
-	<div class="row">
-		<div class="col">
-			<h1>商品新規登録</h1>
-		  			<%= f.attachment_field :image, class: "item_image" %>
-		</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-2">
+		<h4 class="admins-item-new-title">商品新規登録</h4>
 	</div>
-	<div class="row">
-		<div class="col">
-			<table>
-				<tr>
-					<th>商品名<%= f.text_field :name, class: "name" %></th>
-
-					<th>
-						商品説明<%= f.text_area :description, class: "description" %>
-					</th>
-
-					<th>ジャンル<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-					</th>
-
-					<th>税抜き価格<%= f.text_field :tax_excluded_price, class: "tax_excluded_price" %>円
-					</th>
-
-					<th>販売ステータス<%= f.select :is_sales_status, [["販売中", true], ["販売停止中", false]] %>
-					</th>
-
-					<th>
-						<%= f.submit "新規登録", class: "btn btn-primary" %>
-					</th>
-				</tr>
-			</table>
-		</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+				<%= form_for(@item, url: admins_items_path) do |f| %>
+	  			<%= f.attachment_field :image, class: "item_image" %>
 	</div>
-<% end %>
-
-
+	<div class="col-md-9">
+		<table class="table-condensed">
+			<tr>
+				<th>商品名</th>
+				<th><%= f.text_field :name, class: "name" %></th>
+			</tr>
+			<tr>
+				<th>商品説明</th>
+				<th><%= f.text_area :description, class: "description" %></th>
+			</tr>
+			<tr>
+				<th>ジャンル</th>
+				<th><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></th>
+			</tr>
+			<tr>
+				<th>税抜き価格</th>
+				<th><%= f.text_field :tax_excluded_price, class: "tax_excluded_price" %>円</th>
+			</th>
+			<tr>
+				<th>販売ステータス</th>
+				<th><%= f.select :is_sales_status, [["販売中", true], ["販売停止中", false]] %></th>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-2 col-md-offset-7">
+		<table class="table-condensed">
+			<tr>
+				<th>
+					<%= f.submit "新規登録", class: "btn btn-primary btn-lg" %>
+				</th>
+				<% end %>
+			</tr>
+		</table>
+	</div>
+</div>

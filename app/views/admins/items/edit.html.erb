@@ -1,12 +1,16 @@
 <div class="row">
-	<div class="col-4">
-		<h2>商品編集</h2>
-		<%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
-
+	<div class="col-md-6 col-md-offset-2">
+		<h4 class="admins-item-edit-title">商品編集</h4>
 	</div>
-	<div class="col-8">
+</div>
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-1">
+		<%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+	</div>
+	<div class="col-md-5">
 		<%= form_for(@item, url: admins_item_path) do |f| %>
-			<table>
+		<table class="table-condensed">
 				<tr>
 					<th><%= f.attachment_field :image, class: "item_image" %></th>
 				</tr>
@@ -31,7 +35,11 @@
 					<th><%= f.select :is_sales_status, [["販売中", true], ["販売停止中", false]] %></th>
 				</tr>
 			</table>
-			<%= f.submit '変更を保存', class: "btn btn-primary" %>
+		</div>
+	</div>
+<div class="row">
+	<div class="col-md-offset-8">
+		<%= f.submit '変更を保存', class: "btn btn-primary btn-lg" %>
 		<% end %>
 	</div>
 </div>

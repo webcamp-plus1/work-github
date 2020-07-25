@@ -1,15 +1,15 @@
 <div class="row">
-	<div class="col">
-		<h1>商品一覧</h1>
-	</div>
-	<div class="col-8">
-		<%= link_to new_admins_item_path do %>
-			<button type="button" class="btn btn-primary btn-circle">＋</button>
-		<% end %>
+	<div class="col-md-6 col-md-offset-2">
+		<h4 class="admins-item-index-title">商品一覧</h4>
 	</div>
 </div>
 <div class="row">
-	<div class="col">
+	<div class="col-md-1 col-md-offset-10">
+		<%= link_to new_admins_item_path do %>
+			<button type="button" class="admins-item-index-btn">＋</button>
+		<% end %>
+	</div>
+	<div class="col-md-10 col-md-offset-1">
 		<table class="table">
 			<thead class="t-color">
 				<tr>
