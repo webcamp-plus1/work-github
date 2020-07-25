@@ -15,12 +15,12 @@
 			<% @orders.each do |order| %>
 				<tr>
 					<td>
-						<%= link_to admins_order_path(order) do %>
+						<%= link_to admins_order_path(order), data: {"turbolinks"=>false} do %>
 							<%= order.created_at.to_s(:datetime_jp) %>
 						<% end %>
 					</td>
 					<td><%= order.member.last_name %><%= order.member.first_name %></td>
-					<td><%= order.order_item.count %></td>
+					<td><%= order.order_items.count %></td>
 					<td>
 						<% if (order.status == 'waiting')%>入金待ち
 	     			<% elsif (order.status == 'confirm')%>入金確認
