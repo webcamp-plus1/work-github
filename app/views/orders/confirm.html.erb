@@ -15,9 +15,9 @@
 				<% current_member.cart_items.each do |cart_item| %>
 				<tr>
 					<td><%= cart_item.item.name %></td>
-					<td><%= (cart_item.item.tax_excluded_price * 1.1).round(0) %></td>
+					<td><%= (cart_item.item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %></td>
 					<td><%= cart_item.count %></td>
-					<td><%= ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0) %></td>
+					<td><%= ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0).to_s(:delimited) %></td>
 					<% @sum += ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0) %>
 				</tr>
 				<% end %>
@@ -32,12 +32,12 @@
 			</tr>
 			<tr>
 				<th class="t-color">商品合計</th>
-				<th><%= @sum %>円</th>
+				<th><%= @sum.to_s(:delimited) %>円</th>
 			</tr>
 			<tr>
 				<th class="t-color">請求合計</th>
 				<th>
-					<%= @sum + 800 %>円</th>
+					<%= (@sum + 800).to_s(:delimited) %>円</th>
 			</tr>
 		</table>
 	</div>
@@ -50,7 +50,8 @@
 		<table>
 			<tr>
 				<th>支払方法</th>
-				<th><%= @order.payment_method %></th>
+				<th><% if (@order.payment_method == 1) %>銀行支払
+				<% else %>クレジットカード<% end %>
 			</tr>
 			<tr>
 				<th>お届け先</th>

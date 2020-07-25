@@ -44,7 +44,7 @@
 						<%= attachment_image_tag item, :image, :fill, 140, 100, format: 'jpeg', fallback: "no_image.jpg", size: '140×100' %></br>
 					<% end %>
 					<%= item.name %></br>
-			    ¥<%= item.tax_excluded_price %>
+			    ¥<%= item.tax_excluded_price.to_s(:delimited) %>
 			  </div>
 			<% end %>
 		</div>

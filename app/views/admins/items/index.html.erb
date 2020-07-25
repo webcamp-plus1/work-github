@@ -28,7 +28,7 @@
 							<%= link_to admins_item_path(item) do %>
 								<%= item.name %></th>
 							<% end %>
-						<th><%= item.tax_excluded_price %></th>
+						<th><%= (item.tax_excluded_price).to_s(:delimited) %>円</th>
 						<th><%= item.genre.name %></th>
 						<th>
 							<% if (item.is_sales_status == true) %>販売中

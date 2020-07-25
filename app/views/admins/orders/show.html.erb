@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col">
 <h1>注文履歴詳細</h1>
- 
+
 <table>
 		<tr>
 			<th>購入者</th>
@@ -52,13 +52,13 @@
 							<%= order_item.item.name %>
 						</td>
 						<td>
-							<%= (order_item.orderded_price * 1.1).round(0) %>
+							<%= (order_item.orderded_price * 1.1).round(0).to_s(:delimited) %>
 						</td>
 						<td>
 							<%= order_item.count %>
 						</td>
 						<td>
-							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0) %>
+							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %>
 						</td>
 							<%= form_for(@order_item, url: "/admins/order_items/#{order_item.id}") do |f| %>
 								<td><%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %></td>
@@ -79,7 +79,7 @@
 			<tr>　</tr>
 			<tr>
 				<th>商品合計　</th>
-				<th><%= ((@sum) * 1.1).round(0) %>円</th>
+				<th><%= ((@sum) * 1.1).round(0).to_s(:delimited) %>円</th>
 			</tr>
 			<tr>
 				<th>送料　</th>
@@ -87,7 +87,7 @@
 			</tr>
 			<tr>
 				<th>請求金額合計　</th>
-				<th><%= (((@sum) * 1.1) + 800).round(0) %>円</th>
+				<th><%= (((@sum) * 1.1) + 800).round(0).to_s(:delimited) %>円</th>
 			</tr>
 		</table>
 	</div>
