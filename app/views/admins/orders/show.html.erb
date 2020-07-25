@@ -25,6 +25,7 @@
 				<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 制作完了: 'done'} %>
 			</th>
 			<th><%= f.submit "更新", class: "btn btn-primary" %></th>
+			<% end %>
 		</tr>
 	</tbody>
 </table>
@@ -59,10 +60,9 @@
 						<td>
 							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0) %>
 						</td>
-							<%= fields_for(@order_item) do |i| %>
-								<td><%= i.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %></td>
-								<td><%= i.submit "更新", class: "btn btn-primary" %></td>
-								<% end %>
+							<%= form_for(@order_item, url: "/admins/order_items/#{order_item.id}") do |f| %>
+								<td><%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %></td>
+								<td><%= f.submit "更新", class: "btn btn-primary" %></td>
 							<% end %>
 					<% end %>
 				</tr>
