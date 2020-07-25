@@ -17,7 +17,7 @@
 			<tr>
 			　　 <td><%= attachment_image_tag cart_item.item, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg" %>
 				<%= cart_item.item.name %></td>
-				<td><%= (cart_item.item.tax_excluded_price * 1.1 ).round(0) %></td>
+				<td><%= (cart_item.item.tax_excluded_price * 1.1 ).round(0).to_s(:delimited) %></td>
 				<td>
 															<!-- #{cart_item.id}はもともとある変数の引用 -->
 					<%= form_for(cart_item, url: "/members/carts/#{cart_item.id}") do |f| %>
@@ -26,7 +26,7 @@
 						<% end %>
 				</td>
 				<td>
-					<%= ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>円
+					<%= ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)).to_s(:delimited) %>円
 				</td>
 					<% @sum += ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)) %>
 				<td>
@@ -42,7 +42,7 @@
 		<table class="table table-bordered">
 		<tr>
 			<th>合計金額</th>
-			<td><%= @sum %>円</td>
+			<td><%= @sum.to_s(:delimited) %>円</td>
 		</tr>
 		</table>
 	</div>
