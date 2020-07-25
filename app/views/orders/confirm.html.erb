@@ -50,12 +50,15 @@
 		<table>
 			<tr>
 				<th>支払方法</th>
-				<th><% if (@order.payment_method == 1) %>銀行支払
-				<% else %>クレジットカード<% end %>
-			</tr>
+				<th><% if (@order.payment_method == 1) %>　　銀行支払
+				<% else %>　　クレジットカード<% end %>
+			</tr>	
 			<tr>
 				<th>お届け先</th>
-				<th><%= @order.postal_code %><%= @order.delivery_target_address %><%= @order.addressee %></th>
+				<th>　　<%= @order.postal_code %><%= @order.delivery_target_address %></th>
+			<tr>
+				<th></th>
+				<th>　　<%= @order.addressee %></th>
 			</tr>
 		</table>
 	</div>
@@ -74,4 +77,3 @@
 		</div>
 	<% end %>
 </div>
-
