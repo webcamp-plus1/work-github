@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
           @order_items.count = cart_item.count
           @order_items.orderded_price = cart_item.item.tax_excluded_price
           @order_items.save
+          current_member.cart_items.destroy_all
         end
         redirect_to orders_done_path
       else
