@@ -1,9 +1,9 @@
 <div class="row">
-  <h4 class="col-xs-3 title-color" style="margin-left: 300px;">会員の方はこちらからログイン</h4>
+  <h4 class="col-md-offset-1 devise-member-new-title">会員の方はこちらからログイン</h4>
 </div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="row">
-  <div class="col" style="margin-left: 400px;">
+  <div class="col-md-6 col-md-offset-2">
     <table class="table-condensed">
       <tr>
         <th><%= f.label :メールアドレス %></th>
@@ -14,15 +14,19 @@
         <th><%= f.password_field :password, autocomplete: "current-password", class: "input-mysize"%></th>
       </tr>
     </table>
+    <div class="actions col-md-4 col-md-offset-4">
+      <%= f.submit "ログイン", class: "btn btn-primary devise-member-new-btn"%>
+    </div>
   </div>
 </div>
-  <div class="actions col-md-4 col-md-offset-4" style="margin-left: 400px; margin-top: 20px; margin-bottom: 20px;">
-    <%= f.submit "ログイン", class: "btn btn-primary w-50"%>
-  </div>
+
+
+
+
 <% end %>
 <div class="row">
-  <h4 class="col-xs-3 title-color" style="margin-left: 300px;">　登録がお済みでない方</h4>
+  <h4 class="col-xs-3">　登録がお済みでない方</h4>
 </div>
-<div style="margin-left: 400px;">
+<div>
 <%= link_to "こちら", new_member_registration_path %>　から新規登録を行ってください。
 </div>
