@@ -1,12 +1,12 @@
 <div class="row">
-	<div class="col">
-		<h2>配送先編集</h2>
+	<div class="col-md-offset-1">
+		<h4 class="delivery-edit-title">配送先編集</h4>
 	</div>
 </div>
 <div class="row">
 	<div class="col">
 <%= form_for(@delivery) do |f| %>
-<table>
+<table class="table-condensed">
 	<tr>
 		<th>郵便番号(ハイフンなし)</th>
 		<th><%= f.text_field :postal_code, class: "postal_code" %></th>
