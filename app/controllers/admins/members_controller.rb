@@ -2,9 +2,8 @@ class Admins::MembersController < ApplicationController
 
   def top
      # 今日の注文数
-      count_order = Order.where('created_at > ?', Time.current.beginning_of_day)
-      count_order = Order.where('created_at < ?', Time.current.end_of_day)
-      count_in_today = count_order.count
+    count_order = Order.where('created_at > ?', Time.current.beginning_of_day).where('created_at < ?', Time.current.end_of_day)
+    @count = count_order.count
   end
 
   def index

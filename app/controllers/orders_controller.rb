@@ -51,8 +51,8 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.page(params[:page]).reverse_order.per(4)
-    order_item = OrderItem.all
+    @orders = Order.all
+    @orders = Order.where(member_id: current_member.id).page(params[:page]).reverse_order.per(4)
   end
 
   def show
@@ -62,6 +62,6 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id)
+      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id, :tortal_prace)
     end
 end
