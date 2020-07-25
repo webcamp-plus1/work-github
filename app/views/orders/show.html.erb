@@ -21,7 +21,14 @@
 		</tr>
 		<tr>
 			<th class="t-color">ステータス</th>
-			<th><%= @order.status %></th>
+			<th>
+				<% if (@order.status == 'waiting')%>入金待ち
+   			<% elsif (@order.status == 'confirm')%>入金確認
+   			<% elsif (@order.status == 'in_production')%>製作中
+   			<% elsif (@order.status == 'preparing')%>発送準備中
+   			<% elsif (@order.status == 'done')%>発送済み
+     		<% end %>
+	     </th>
 		</tr>
 	</table>
 </div>
