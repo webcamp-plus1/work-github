@@ -1,5 +1,5 @@
-<h1>Orders#new</h1>
 <div class=“row”>
+  <div class="col-xs-10 col-xs-offset-1">
 <h3>注文情報入力</h3>
 <%= form_for(@order, url: "/orders/confirm") do |f| %>
 <h3>支払い方法</h3>
@@ -9,6 +9,8 @@
         <%= f.radio_button :payment_method, :card %>
         <%= f.label :payment_method, 'クレジットカード' %>
       </th>
+    </tr>
+    <tr>
       <th>
         <%= f.radio_button :payment_method, :bank %>
         <%= f.label :payment_method, '銀行振込' %>
@@ -22,8 +24,16 @@
 			<th>
         <%= f.radio_button :d_address, :current_member %>
         <%= f.label :d_address, 'ご自身の住所' %>
+      </th>
+    </tr>
+    <tr>
+      <th>
         <%= current_member.postal_code %>
         <%= current_member.address %>
+      </th>
+    </tr>
+    <tr>
+      <th>
         <%= current_member.last_name %>
         <%= current_member.first_name %>
       </th>
@@ -34,20 +44,33 @@
         <%= f.radio_button :d_address, :deliveries %>
         <%= f.label :d_address, '登録済住所から選択' %>
       </th>
-          <th><%= f.collection_select :member_id, current_member.deliveries, :id, :ffff %>
-          </th>
+    </tr>
+    <tr>
+      <th><%= f.collection_select :member_id, current_member.deliveries, :id, :ffff %></th>
     </tr>
     <tr>
       <th>
       <!-- deliveriesはコントローラー側で処理を変えればOK -->
         <%= f.radio_button :d_address, :new_deli %>
         <%= f.label :d_address, '新しい住所' %><br>
-        <%= f.text_field :postal_code %><br>
-        <%= f.text_field :destination %><br>
-        <%= f.text_field :addressee %>
+        <table class="table-condensed">
+          <tr>
+            <th><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></th>
+            <th><%= f.text_field :postal_code %></th>
+          </tr>
+          <tr>
+            <th><%= f.label :destination, '住所' %></th>
+            <th><%= f.text_field :destination %></th>
+          </tr>
+          <tr>
+            <th><%= f.label :destination, '宛名' %></th>
+            <th><%= f.text_field :addressee %></th>
+          </tr>
+        </table>
       </th>
 		</tr>
 	</table>
-	<%= f.submit class: "btn btn-primary col-xs-12" %>
+	<%= f.submit "確認画面へ進む", class: "btn btn-primary col-md-2 col-md-offset-4" %>
 <% end %>
+</div>
 </div>

@@ -10,13 +10,17 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @genres = Genre.all
-    if @member = current_member
-      current_member.cart_items.find_by(item_id: @item.id)
-      @item_post = current_member.cart_items.find_by(item_id: @item.id)
+    
+    if member_signed_in?
+      if current_member.cart_items.find_by(item_id: @item.id)
+        @item_post = current_member.cart_items.find_by(item_id: @item.id)
+      else
+        @item_post = CartItem.new
+      end
     else
       @item_post = CartItem.new
     end
+    @genres = Genre.all
   end
 
   def search
