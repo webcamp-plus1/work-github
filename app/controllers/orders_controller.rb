@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_member!
   def new
     @order = Order.new
     @deliveries = Delivery.all
