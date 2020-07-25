@@ -1,4 +1,5 @@
 class Admins::MembersController < ApplicationController
+  before_action :authenticate_admin!
 
   def top
      # 今日の注文数
