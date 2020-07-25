@@ -9,7 +9,7 @@ class Admins::OrderItemsController < Admins::OrdersController
   end
 
   private
-  def order_itenm_params
+  def order_item_params
   	params.require(:order_item).permit(:production_status)
   end
 end
