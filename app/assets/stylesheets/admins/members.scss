@@ -2,19 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.top {
-	margin-top: 150px;
-	background: #eeeeee;
-	width: auto;
+.admins-member-top-title {
+	background :#eeeeee;
+	padding: 10px 15px;
+	width: 150px;
 }
 
-.order_count {
-	background: #eeeeee;
-	width:20px;
-	border-bottom: black 3px solid;
-	color: red;
-	font-weight: bold;
+.admins-member-top {
+	margin-top: 100px;
 }
+
+.admins-member-top-count {
+	border-bottom: #000000 2px solid;
+}
+.admins-member-top-count:hover {
+	text-decoration: none;
+}
+
 
 .col-xs-9 {
 	margin-top: 20px;

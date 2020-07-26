@@ -1,7 +1,14 @@
-<h3>管理者画面</h3>
-<h2 class="top">本日の注文件数
-	<div class="order_count">
-		<%= @count %>
+<div class="row">
+	<div class="col-md-offset-1">
+		<h3 class="admins-member-top-title">管理者画面</h3>
 	</div>
-	件
-</h2>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<h2 class="admins-member-top">本日の注文件数</h2>
+	</div>
+	<div class="col">
+		<h2 class="admins-member-top"><a href="/admins/orders" class="admins-member-top-count"><%=  @count %></a>件</h2>
+	</div>
+</div>
