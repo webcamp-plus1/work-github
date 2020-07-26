@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col">
-<h1>注文履歴詳細</h1>
+<h2 style="width: 200px; background: #eee; margin-left: 100px; ">注文履歴詳細</h2>
 
-<table>
+<table style="margin: 40px 20px 40px;">
 		<tr>
 			<th>購入者</th>
 			<th><%= @order.member.last_name %><%= @order.member.first_name %></th>
@@ -10,13 +10,14 @@
 		<tr>
 			<th>配送先</th>
 			<th>
-				〒<%= @order.postal_code %><%= @order.delivery_target_address %><br>
-				<%= @order.addressee %>
+				〒 <%= @order.postal_code %> <%= @order.delivery_target_address %> <br>
+				 <%= @order.addressee %>
 			</th>
 		</tr>
 		<tr>
 			<th>支払方法</th>
-			<th><%= @order.payment_method %></th>
+			<th><% if (@order.payment_method == 1) %>銀行支払
+				<% else %>クレジットカード<% end %></th>
 		</tr>
 		<tr>
 			<%= form_for(@order, url: admins_order_path) do |f| %>
