@@ -1,7 +1,4 @@
-<h1>Admins::Members#edit</h1>
-
-
-<h1>登録情報編集</h1>
+<h2 style="width: 180px; background: #eee; margin-bottom: 50px;">登録情報編集</h3>
 
 
 <%= form_for(@member, url: admins_member_path) do |f| %>
@@ -64,19 +61,23 @@
     	<th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></th>
     </tr>
   </div>
-  <div class="form-group">
+  <div class="form-status">
     <tr>
     	<th>
 			<%= f.label :会員ステータス %>
-		    <%= f.radio_button :is_unsubscribe_status, true %>
-		    <%= f.label :is_unsubscribe_status, '退会済', value: true %>
-		    <%= f.radio_button :is_unsubscribe_status, false %>
-		    <%= f.label :is_unsubscribe_status, '有効', value: false %>
-		</th>
+      </th>
+      <th>
+      </th>
+      <th>
+  		    <%= f.radio_button :is_unsubscribe_status, true %>
+  		    <%= f.label :is_unsubscribe_status, '退会済', value: true %>
+  		    <%= f.radio_button :is_unsubscribe_status, false %>
+  		    <%= f.label :is_unsubscribe_status, '有効', value: false %>
+      </th>
     </tr>
   </div>
 </table>
-  <div class="actions">
+  <div class="actions" style="margin-top: 50px;">
     <th><%= f.submit "編集内容を保存する", class: "btn btn-info", style: "margin-left: 100px;" %><th>
   </div>
 <% end %>
