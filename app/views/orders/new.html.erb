@@ -12,7 +12,7 @@
     	<table>
     		<tr>
     			<th>
-            <%= f.radio_button :payment_method, :card %>
+            <%= f.radio_button :payment_method, :card, checked: true %>
             <%= f.label :payment_method, 'クレジットカード' %>
           </th>
         </tr>
@@ -31,7 +31,7 @@
     		<tr>
     			<!-- ラジオボタンif文で保存するデータを変更する -->
     			<th>
-            <%= f.radio_button :d_address, :current_member %>
+            <%= f.radio_button :d_address, :current_member, checked: true %>
             <%= f.label :d_address, 'ご自身の住所' %>
           </th>
         </tr>
