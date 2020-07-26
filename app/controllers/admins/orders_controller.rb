@@ -1,8 +1,12 @@
 class Admins::OrdersController < ApplicationController
 	before_action :authenticate_admin!
 	def index
-		@orders = Order.page(params[:page]).reverse_order
-
+		if request.referer&.include?("/admins/member")
+			count_order = Order.where('created_at > ?', Time.current.beginning_of_day).where('created_at < ?', Time.current.end_of_day)
+    	@orders = count_order.page(params[:page]).reverse_order
+		else
+			@orders = Order.page(params[:page]).reverse_order
+  	end 
 	end
 	def show
 		@order = Order.find(params[:id])
