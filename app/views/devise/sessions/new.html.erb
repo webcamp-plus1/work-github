@@ -14,6 +14,9 @@
         <th><%= f.password_field :password, autocomplete: "current-password", class: "input-mysize"%></th>
       </tr>
     </table>
+    <div class="col-md-offset-7">
+      <a href="/members/password/new">=>パスワードを忘れた方はこちら</a>
+    </div>
     <div class="actions col-md-4 col-md-offset-4">
       <%= f.submit "ログイン", class: "btn btn-primary devise-member-new-btn"%>
     </div>
