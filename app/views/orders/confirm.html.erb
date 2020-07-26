@@ -1,6 +1,11 @@
-<h3>注文情報確認</h3>
+<div class=“row”>
+  <div class="col-md-10 col-md-offset-2">
+		<h3 class="order-confirm-title">注文情報確認</h3>
+	</div>
+</div>
+
 <div class=row>
-	<div class="col-md-8">
+	<div class="col-md-8 col-md-offset-1">
 		<table class="table table-bordered">
 			<thead class="t-color">
 				<tr>
@@ -14,7 +19,8 @@
 				<% @sum = 0 %>
 				<% current_member.cart_items.each do |cart_item| %>
 				<tr>
-					<td><%= cart_item.item.name %></td>
+					<td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+							<%= cart_item.item.name %></td>
 					<td><%= (cart_item.item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %></td>
 					<td><%= cart_item.count %></td>
 					<td><%= ((cart_item.item.tax_excluded_price * 1.1) * (cart_item.count)).round(0).to_s(:delimited) %></td>
@@ -24,7 +30,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<table class="table table-bordered">
 			<tr>
 				<th class="t-color">送料</th>
@@ -44,17 +50,15 @@
 </div>
 
 <div class="row">
-	<div class="col-md-10">
-		<div class=col-md-6>
-		<h4>請求情報</h4>
-		<table>
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table-condensed">
 			<tr>
-				<th>支払方法</th>
+				<th class="order-confirm-choice-item">支払方法</th>
 				<th><% if (@order.payment_method == 1) %>　　銀行支払
 				<% else %>　　クレジットカード<% end %>
-			</tr>	
+			</tr>
 			<tr>
-				<th>お届け先</th>
+				<th class="order-confirm-choice-item">お届け先</th>
 				<th>　　<%= @order.postal_code %><%= @order.delivery_target_address %></th>
 			<tr>
 				<th></th>
@@ -62,8 +66,8 @@
 			</tr>
 		</table>
 	</div>
-	</div>
 </div>
+
 <div class="row">
 	<%= form_for(@order, url: "/orders/create") do |f| %>
 		<div class="col-md-1 col-md-offset-5">
