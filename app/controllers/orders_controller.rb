@@ -21,17 +21,24 @@ class OrdersController < ApplicationController
       @order.addressee = @add.addressee
     elsif @order.d_address == 'new_deli'
       @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
-      @delivery.save
+      
       @order.postal_code = @order.postal_code
       @order.delivery_target_address = @order.destination
       @order.addressee = @order.addressee
+
+      if params[:order][:postal_code] == "" || params[:order][:destination] == "" || params[:order][:addressee] == ""
+        @deliveries = Delivery.all
+        @member_id = current_member.id
+        render 'new'
+      end
     end
   end
 
   def create
       @order = Order.new(order_params)
       @order.member = current_member
-      if @order.save
+      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
+      if @order.save!
         @cart_items = current_member.cart_items.all
         @cart_items.each do |cart_item|
           @order_items = OrderItem.new
@@ -40,8 +47,9 @@ class OrdersController < ApplicationController
           @order_items.count = cart_item.count
           @order_items.orderded_price = cart_item.item.tax_excluded_price
           @order_items.save
-          current_member.cart_items.destroy_all
         end
+        current_member.cart_items.destroy_all
+        @delivery.save
         redirect_to orders_done_path
       else
         render 'confirm'
