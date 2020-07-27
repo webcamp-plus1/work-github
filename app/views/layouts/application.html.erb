@@ -19,12 +19,13 @@
         <nav>
           <ul class="nav navbar-nav navbar-right"　>
             <% if member_signed_in? %>
+              <li><%= current_member.last_name %><%= current_member.first_name %>　様ログイン中</li>
               <li><%= link_to "マイページ", members_mypage_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to '商品一覧', items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'カート', members_carts_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "btn btn-default btn-sm nav-btn" %></li>
             <% elsif admin_signed_in? %>
-              <li>管理者ログイン中</h1>
+              <li>管理者ログイン中</li>
               <li class=""><%= link_to "商品一覧", admins_items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li class=""><%= link_to "会員一覧", admins_members_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li class=""><%= link_to "注文履歴一覧", admins_orders_path, class: "btn btn-default btn-sm nav-btn" %></li>
