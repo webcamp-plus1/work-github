@@ -31,6 +31,8 @@ class OrdersController < ApplicationController
         @deliveries = Delivery.all
         @member_id = current_member.id
         render 'new'
+      else
+        @delivery.save!
       end
     end
   end
@@ -38,7 +40,6 @@ class OrdersController < ApplicationController
   def create
       @order = Order.new(order_params)
       @order.member = current_member
-      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
       if @order.save!
         @cart_items = current_member.cart_items.all
         @cart_items.each do |cart_item|
@@ -50,7 +51,6 @@ class OrdersController < ApplicationController
           @order_items.save
         end
         current_member.cart_items.destroy_all
-        @delivery.save
         redirect_to orders_done_path
       else
         render 'confirm'

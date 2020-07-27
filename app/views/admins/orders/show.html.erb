@@ -23,7 +23,7 @@
 			<%= form_for(@order, url: admins_order_path) do |f| %>
 			<th>注文ステータス</th>
 			<th>
-				<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 制作完了: 'done'} %>
+					<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 制作完了: 'done'} %>
 			</th>
 			<th><%= f.submit "更新", class: "btn btn-primary" %></th>
 			<% end %>
@@ -46,7 +46,6 @@
 				</tr>
 			</thead>
 			<tbody>
-
 				<% @order.order_items.each do |order_item| %>
 					<tr>
 						<td>
@@ -62,7 +61,9 @@
 							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %>
 						</td>
 							<%= form_for(order_item, url: admins_order_item_path(order_item)) do |f| %>
-								<td><%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %></td>
+								<td>
+										<%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %>
+								</td>
 								<td><%= f.submit "更新", class: "btn btn-primary" %></td>
 							<% end %>
 					<% end %>
