@@ -6,8 +6,13 @@ class Admins::OrdersController < ApplicationController
     	@orders = count_order.page(params[:page]).reverse_order
 		else
 			@orders = Order.page(params[:page]).reverse_order
-  	end 
+  		end
 	end
+
+	def member_orders
+		@member = Member.find(params[:id])
+	end
+
 	def show
 		@order = Order.find(params[:id])
 	end

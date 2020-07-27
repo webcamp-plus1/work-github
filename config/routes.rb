@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'admins/member', to: 'members#top', as: 'admin_top'
+    get 'members/:id/orders'=>'orders#member_orders'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
     resources :members
