@@ -13,6 +13,7 @@
 <!-- header-nav  リンク先はのちに追記します -->
     <header class="navbar navbar-fixed-top">
       <div class="container">
+        <div class="row">
         <nav class="nav navbar-nav navbar-left">
           <span class="col-8"><%= link_to "NaganoCake", "/" %></span>
         </nav>
@@ -39,6 +40,14 @@
             <% end %>
           </ul>
         </nav>
+      </div>
+        <div class="row">
+          <div class="col-md-offset-9">
+          <%= form_tag %>
+            <%= text_field_tag :search %>
+            <%= submit_tag '検索' %>
+          </div>
+        </div>
       </div>
     </header>
   <div class="container body">
