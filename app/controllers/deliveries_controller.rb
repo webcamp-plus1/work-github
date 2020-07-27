@@ -11,8 +11,8 @@ class DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to request.referer
     else
-      @delivery = Delivery.all
-      redirect_to request.referer
+      @deliveries = Delivery.all
+      render :index
     end
   end
 
