@@ -40,6 +40,16 @@
           </ul>
         </nav>
       </div>
+      <% if admin_signed_in? %>
+      <div class="row">
+          <div class="col-md-offset-9">
+          <%= form_tag do %>
+            <%= text_field_tag :search %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
     </header>
   <div class="container body">
     <%= yield %>
