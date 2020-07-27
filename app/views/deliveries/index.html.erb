@@ -8,6 +8,11 @@
 	<div class="col">
 		<%= form_for(@delivery) do |f| %>
 			<table class="table-condensed">
+			<ul>
+         		<% @delivery.errors.full_messages.each do |message| %>
+           		<li><%= message %></li>
+         		<% end %>
+       		</ul>
 				<tr>
 					<th>郵便番号(ハイフンなし)</th>
 					<th>

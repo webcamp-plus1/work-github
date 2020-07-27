@@ -6,3 +6,23 @@ ja:
       previous: '戻る'
       next: '次'
       truncate: '...'
+
+ja:
+  activerecord:
+    errors:
+      models:
+        delivery:
+          attributes:
+            postal_code:
+              blank: "を入力して下さい"
+            destination:
+              blank: "を入力して下さい"
+            addressee:
+              blank: "を入力して下さい"
+    models:
+      delivery:
+    attributes:
+      delivery:
+        postal_code: "郵便番号"
+        destination: "住所"
+        addressee: "宛名"
