@@ -10,12 +10,16 @@ class ApplicationController < ActionController::Base
      when Admin
       admins_admin_top_path
      when Member
-      items_path(resource)
+      items_path
     end
   end
 
-  def after_sign_out_path_for(resource)
-    root_path
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :member
+      items_path
+    elsif resource_or_scope == :admin
+      new_admin_session_path
+    end
   end
 
   def configure_permitted_parameters
