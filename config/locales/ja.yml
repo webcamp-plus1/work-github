@@ -7,7 +7,6 @@ ja:
       next: '次'
       truncate: '...'
 
-ja:
   activerecord:
     errors:
       models:
