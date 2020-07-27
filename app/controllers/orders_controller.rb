@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @order.member = current_member
+    @cart_items = current_member.cart_items.all
     if @order.d_address == 'current_member'
       @order.postal_code = current_member.postal_code
       @order.delivery_target_address = current_member.address
