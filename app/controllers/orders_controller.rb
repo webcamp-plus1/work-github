@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       @order.addressee = @add.addressee
     elsif @order.d_address == 'new_deli'
       @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
-      
+
       @order.postal_code = @order.postal_code
       @order.delivery_target_address = @order.destination
       @order.addressee = @order.addressee
