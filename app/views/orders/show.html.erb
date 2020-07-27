@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<th class="t-color">支払方法</th>
-			<th><% if (@order.payment_method == 1) %>銀行支払
+			<th><% if (@order.payment_method == 'bank') %>銀行支払
 				<% else %>クレジットカード<% end %>
 			</th>
 		</tr>
