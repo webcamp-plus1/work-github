@@ -29,7 +29,7 @@ class Admins::OrdersController < ApplicationController
 	  end
 	  redirect_to request.referer
   	end
-  
+
   private
   def order_params
   	params.require(:order).permit(:status)
