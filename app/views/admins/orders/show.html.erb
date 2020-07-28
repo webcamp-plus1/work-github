@@ -1,37 +1,48 @@
 <div class="row">
 	<div class="col">
-<h2 style="width: 200px; background: #eee; margin-left: 100px; ">注文履歴詳細</h2>
+		<h2 style="width: 200px; background: #eee; margin-left: 100px; ">注文履歴詳細</h2>
 
-<table style="margin: 40px 20px 40px;">
-		<tr>
-			<th>購入者</th>
-			<th><%= @order.member.last_name %><%= @order.member.first_name %></th>
-		</tr>
-		<tr>
-			<th>配送先</th>
-			<th>
-				〒 <%= @order.postal_code %> <%= @order.delivery_target_address %> <br>
-				 <%= @order.addressee %>
-			</th>
-		</tr>
-		<tr>
-			<th>支払方法</th>
-			<th><% if (@order.payment_method == 1) %>銀行支払
-				<% else %>クレジットカード<% end %></th>
-		</tr>
-		<tr>
-			<%= form_for(@order, url: admins_order_path) do |f| %>
-			<th>注文ステータス</th>
-			<th>
-					<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 発送済み: 'done'} %>
-			</th>
-			<th><%= f.submit "更新", class: "btn btn-primary" %></th>
-			<% end %>
-		</tr>
-	</tbody>
-</table>
+		<table style="margin: 40px 20px 40px;">
+			<tbody>
+				<tr>
+					<th>購入者</th>
+					<th>
+						<%= @order.member.last_name %><%= @order.member.first_name %>
+					</th>
+				</tr>
+				<tr>
+					<th>配送先</th>
+					<th>
+						〒 <%= @order.postal_code %> <%= @order.delivery_target_address %> <br>
+						 <%= @order.addressee %>
+					</th>
+				</tr>
+				<tr>
+					<th>支払方法</th>
+					<th>
+						<% if (@order.payment_method == 1) %>
+							銀行支払
+						<% else %>
+							クレジットカード
+						<% end %>
+					</th>
+				</tr>
+				<tr>
+					<%= form_for(@order, url: admins_order_path) do |f| %>
+					<th>注文ステータス</th>
+					<th>
+						<%= f.select :status, {入金待ち: 'waiting', 入金確認: 'confirm', 製作中: 'in_production', 発送準備中: 'preparing', 発送済み: 'done'} %>
+					</th>
+					<th>
+						<%= f.submit "更新", class: "btn btn-primary" %>
+					</th>
+					<% end %>
+				</tr>
+			<tbody>
+		</table>
+	</div>
 </div>
-</div>
+
 <div class="row">
 	<div class="col-md-8">
 		<table class="table table-bordered">
@@ -45,32 +56,36 @@
 					<th></th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<% @order.order_items.each do |order_item| %>
-					<tr>
-						<td>
-							<%= order_item.item.name %>
-						</td>
-						<td>
-							<%= (order_item.orderded_price * 1.1).round(0).to_s(:delimited) %>
-						</td>
-						<td>
-							<%= order_item.count %>
-						</td>
-						<td>
-							<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %>
-						</td>
-							<%= form_for(order_item, url: admins_order_item_path(order_item)) do |f| %>
-								<td>
-										<%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %>
-								</td>
-								<td><%= f.submit "更新", class: "btn btn-primary" %></td>
-							<% end %>
+				<tr>
+					<td>
+						<%= order_item.item.name %>
+					</td>
+					<td>
+						<%= (order_item.orderded_price * 1.1).round(0).to_s(:delimited) %>
+					</td>
+					<td>
+						<%= order_item.count %>
+					</td>
+					<td>
+						<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %>
+					</td>
+					<%= form_for(order_item, url: admins_order_item_path(order_item)) do |f| %>
+					<td>
+						<%= f.select :production_status, {着手不可: 'not_possible', 制作待ち: 'waiting', 製作中: 'in_production', 制作完了: 'done'} %>
+					</td>
+					<td>
+						<%= f.submit "更新", class: "btn btn-primary" %>
+					</td>
 					<% end %>
 				</tr>
+				<% end %>
 			</tbody>
 		</table>
 	</div>
+
 	<div class="col-md-4">
 		<% @sum = 0 %>
 		<% @order.order_items.each do |order_item| %>
@@ -81,7 +96,9 @@
 			<tr>　</tr>
 			<tr>
 				<th>商品合計　</th>
-				<th><%= ((@sum) * 1.1).round(0).to_s(:delimited) %>円</th>
+				<th>
+					<%= ((@sum) * 1.1).round(0).to_s(:delimited) %>円
+				</th>
 			</tr>
 			<tr>
 				<th>送料　</th>
@@ -89,7 +106,9 @@
 			</tr>
 			<tr>
 				<th>請求金額合計　</th>
-				<th><%= (((@sum) * 1.1) + 800).round(0).to_s(:delimited) %>円</th>
+				<th>
+					<%= (((@sum) * 1.1) + 800).round(0).to_s(:delimited) %>円
+				</th>
 			</tr>
 		</table>
 	</div>

@@ -15,6 +15,9 @@ class Member < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, presence: true
 
+  validates :email, presence: true
+  validates :password, presence: true
+
 
 
   def active_for_authentication?

@@ -1,6 +1,7 @@
 <div class="row">
   <h4 class="col-xs-2 title-color" style="width: 155px; margin-left: 300px; background: #eee;">管理者ログイン</h4>
 </div>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="row">
   <div class="col" style="margin-left: 400px;">
@@ -16,9 +17,10 @@
     </table>
   </div>
 </div>
-  <div class="actions col-md-4 col-md-offset-4" style="margin-left: 400px; margin-top: 20px; margin-bottom: 20px;">
+
+<div class="actions col-md-4 col-md-offset-4" style="margin-left: 400px; margin-top: 20px; margin-bottom: 20px;">
     <%= f.submit "ログイン", class: "btn btn-primary w-50"%>
-  </div>
+</div>
 <% end %>
 
 email: 'plus1@plus1.com',

@@ -26,15 +26,19 @@
 			<% @sum = 0 %>
 				<% @cart_items.each do |cart_item| %>
 					<tr>
-					　　 <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 50, format: 'jpeg', fallback: "no_image.jpg" %>
-						<%= cart_item.item.name %></td>
-						<td><%= (cart_item.item.tax_excluded_price * 1.1 ).round(0).to_s(:delimited) %></td>
+					　　 <td>
+							<%= attachment_image_tag cart_item.item, :image, :fill, 100, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+							<%= cart_item.item.name %>
+						</td>
 						<td>
-																	<!-- #{cart_item.id}はもともとある変数の引用 -->
+							<%= (cart_item.item.tax_excluded_price * 1.1 ).round(0).to_s(:delimited) %>
+						</td>
+						<td>
+							                      		<!-- #{cart_item.id}はもともとある変数の引用 -->
 							<%= form_for(cart_item, url: "/members/carts/#{cart_item.id}") do |f| %>
-									<%= f.number_field :count,min:1,max:100 %>
-									<%= f.submit '変更', class: "btn btn-primary" %>
-								<% end %>
+								<%= f.number_field :count,min:1,max:100 %>
+								<%= f.submit '変更', class: "btn btn-primary" %>
+							<% end %>
 						</td>
 						<td>
 							<%= ((cart_item.item.tax_excluded_price * 1.1).round(0) * (cart_item.count)).to_s(:delimited) %>円
@@ -47,7 +51,6 @@
 				<% end %>
 			</tbody>
 		</table>
-
 	</div>
 </div>
 
@@ -55,6 +58,7 @@
 	<div class="co-md-2 col-md-offset-1">
 		<%= link_to '買い物を続ける', root_path, class: "btn btn-primary" %>
 	</div>
+
 	<div class="col-md-3 col-md-offset-8">
 		<!--  offse-にて９分割分頭に余白をつけています。 -->
 		<table class="table table-bordered">
@@ -73,6 +77,5 @@
 		<% else %>
 			<%= link_to '商品一覧に戻る', items_path, class: "btn btn-success cart-order-index-btn" %>
 		<% end %>
-
 	</div>
 </div>

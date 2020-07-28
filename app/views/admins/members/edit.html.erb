@@ -14,69 +14,76 @@
     </div>
   <% end %>
 
-<table>
-  <div class="form-group">
-    <tr>
-      <th><%= f.label :名前 %></th>
-      <th><%= f.label :'(姓)' %></th>
-      <th><%= f.text_field :last_name, autofocus: true, class: "form-control" %></th>
-      <th><%= f.label :'(名)' %></th>
-      <th><%= f.text_field :first_name, autofocus: true, class: "form-control" %></th>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-      <th><%= f.label :フリガナ %></th>
-      <th><%= f.label :'(セイ)' %></th>
-      <th><%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %></th>
-      <th><%= f.label :'(メイ)' %></th>
-      <th><%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %></th>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-    	<th><%= f.label :'郵便番号(ハイフンなし)' %></th>
-    	<th></th>
-    	<th><%= f.text_field :postal_code, autofocus: true, class: "form-control" %></th>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-    	<th><%= f.label :住所 %></th>
-    	<th></th>
-    	<th><%= f.text_area :address, autofocus: true, class: "form-control" %></th>
-  	</tr>
-  </div>
-  <div class="form-group">
-    <tr>
-    	<th>電話番号(ハイフンなし)</th>
-    	<th></th>
-    	<th><%= f.text_field :phone_number, autofocus: true, class: "form-control" %></th>
-    </tr>
-  </div>
-  <div class="form-group">
-    <tr>
-    	<th><%= f.label :メールアドレス %></th>
-    	<th></th>
-    	<th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></th>
-    </tr>
-  </div>
-  <div class="form-status">
-    <tr>
-    	<th>
-			<%= f.label :会員ステータス %>
-      </th>
-      <th>
-      </th>
-      <th>
-  		    <%= f.radio_button :is_unsubscribe_status, true %>
-  		    <%= f.label :is_unsubscribe_status, '退会済', value: true %>
-  		    <%= f.radio_button :is_unsubscribe_status, false %>
-  		    <%= f.label :is_unsubscribe_status, '有効', value: false %>
-      </th>
-    </tr>
-  </div>
-</table>
+  <table>
+    <div class="form-group">
+      <tr>
+        <th><%= f.label :名前 %></th>
+        <th><%= f.label :'(姓)' %></th>
+        <th><%= f.text_field :last_name, autofocus: true, class: "form-control" %></th>
+        <th><%= f.label :'(名)' %></th>
+        <th><%= f.text_field :first_name, autofocus: true, class: "form-control" %></th>
+      </tr>
+    </div>
+
+    <div class="form-group">
+      <tr>
+        <th><%= f.label :フリガナ %></th>
+        <th><%= f.label :'(セイ)' %></th>
+        <th><%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %></th>
+        <th><%= f.label :'(メイ)' %></th>
+        <th><%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %></th>
+      </tr>
+    </div>
+
+    <div class="form-group">
+      <tr>
+      	<th><%= f.label :'郵便番号(ハイフンなし)' %></th>
+      	<th></th>
+      	<th><%= f.text_field :postal_code, autofocus: true, class: "form-control" %></th>
+      </tr>
+    </div>
+
+    <div class="form-group">
+      <tr>
+      	<th><%= f.label :住所 %></th>
+      	<th></th>
+      	<th><%= f.text_area :address, autofocus: true, class: "form-control" %></th>
+    	</tr>
+    </div>
+
+    <div class="form-group">
+      <tr>
+      	<th>電話番号(ハイフンなし)</th>
+      	<th></th>
+      	<th><%= f.text_field :phone_number, autofocus: true, class: "form-control" %></th>
+      </tr>
+    </div>
+
+    <div class="form-group">
+      <tr>
+      	<th><%= f.label :メールアドレス %></th>
+      	<th></th>
+      	<th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></th>
+      </tr>
+    </div>
+
+    <div class="form-status">
+      <tr>
+      	<th>
+  			<%= f.label :会員ステータス %>
+        </th>
+        <th>
+        </th>
+        <th>
+    		    <%= f.radio_button :is_unsubscribe_status, true %>
+    		    <%= f.label :is_unsubscribe_status, '退会済', value: true %>
+    		    <%= f.radio_button :is_unsubscribe_status, false %>
+    		    <%= f.label :is_unsubscribe_status, '有効', value: false %>
+        </th>
+      </tr>
+    </div>
+  </table>
+
   <div class="actions" style="margin-top: 50px;">
     <th><%= f.submit "編集内容を保存する", class: "btn btn-info", style: "margin-left: 100px;" %><th>
   </div>

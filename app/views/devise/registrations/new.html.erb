@@ -4,7 +4,9 @@
 <div class="row">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
 <table class="table-condensed" style="margin: 30px 50px 0px 50px;">
   <tr>
     <th><%= f.label :名前 %></th>
