@@ -1,84 +1,83 @@
 <div class="row">
-  <h4 class="col-xs-2 title-color" style="margin-left: 50px;">新規会員登録　</h4>
+  <h4 class="col-xs-2 title-color devise-registrations-new-title">新規会員登録</h4>
 </div>
-<div class="row">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="row">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
     <% end %>
-<table class="table-condensed" style="margin: 30px 50px 0px 50px;">
-  <tr>
-    <th><%= f.label :名前 %></th>
-    <th><%= f.label :'　　(姓）　' %></th>
-    <th><%= f.text_field :last_name, autofocus: true, class: "last_name" %></th>
-    <th><%= f.label :'　　(名）' %></th>
-    <th><%= f.text_field :first_name, autofocus: true, class: "first_name" %></th>
-  </tr>
-  <tr>
-    <th><%= f.label :フリガナ %></th>
-    <th><%= f.label :'　　(セイ)　' %></th>
-    <th><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></th>
-    <th><%= f.label :'　　(メイ)' %></th>
-    <th><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></th>
-  </tr>
-  <tr>
-    <th><%= f.label :メールアドレス %></th>
-    <th></th>
-    <th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th><%= f.label :'郵便番号(ハイフンなし)' %></th>
-    <th></th>
-    <th><%= f.text_field :postal_code, autofocus: true, class: "postal_code" %></th>
+    <table class="table-condensed devise-registrations-new-table">
+      <tr>
+        <th><%= f.label :名前 %></th>
+        <th><%= f.label :'　　(姓）　' %></th>
+        <th><%= f.text_field :last_name, autofocus: true, class: "last_name" %></th>
+        <th><%= f.label :'　　(名）' %></th>
+        <th><%= f.text_field :first_name, autofocus: true, class: "first_name" %></th>
+      </tr>
+      <tr>
+        <th><%= f.label :フリガナ %></th>
+        <th><%= f.label :'　　(セイ)　' %></th>
+        <th><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></th>
+        <th><%= f.label :'　　(メイ)' %></th>
+        <th><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></th>
+      </tr>
+      <tr>
+        <th><%= f.label :メールアドレス %></th>
+        <th></th>
+        <th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th><%= f.label :'郵便番号(ハイフンなし)' %></th>
+        <th></th>
+        <th><%= f.text_field :postal_code, autofocus: true, class: "postal_code" %></th>
+      </tr>
+    </table>
+    <table class="table-condensed" style="margin-left: 50px;">
+      <tr>
+        <th><%= f.label :'住所 　　　　　　　　　　　　　　'%></th>
+        <th></th>
+        <th><%= f.text_field :address, autofocus: true, class: "address input-mysize" %></th>
+      </tr>
+    </table>
+    <table class="table-condensed" style="margin-left: 50px;">
+      <tr>
+        <th><%= f.label :'電話番号(ハイフンなし）　　　　　' %></th>
+        <th></th>
+        <th><%= f.text_field :phone_number, autofocus: true, class: "phone_number" %></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th><%= f.label :'パスワード' %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> 文字以上）　　　　　</em>
+            <% end %>
+        </th>
+        <th></th>
+        <th><%= f.password_field :password, autocomplete: "new-password", class: "password" %></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th><%= f.label :'パスワード(確認用）　　　　　' %></th>
+        <th></th>
+        <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </table>
+    <div class="col-md-4 col-md-offset-4" style="margin-top: 15px; margin-bottom: 15px:">
+      <%= f.submit "新規登録", class: "btn btn-success devise-registrations-new-sign-up-btn" %>
+    </div>
+  <% end %>
+</div>
 
-  </tr>
-</table>
-<table class="table-condensed" style="margin-left: 50px;">
-  <tr>
-    <th><%= f.label :'住所 　　　　　　　　　　　　　　'%></th>
-    <th></th>
-    <th><%= f.text_field :address, autofocus: true, class: "address input-mysize" %></th>
-  </tr>
-</table>
-<table class="table-condensed" style="margin-left: 50px;">
-  <tr>
-    <th><%= f.label :'電話番号(ハイフンなし）　　　　　' %></th>
-    <th></th>
-    <th><%= f.text_field :phone_number, autofocus: true, class: "phone_number" %></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th><%= f.label :'パスワード' %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上）　　　　　</em>
-        <% end %>
-    </th>
-    <th></th>
-    <th><%= f.password_field :password, autocomplete: "new-password", class: "password" %></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th><%= f.label :'パスワード(確認用）　　　　　' %></th>
-    <th></th>
-    <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></th>
-    <th></th>
-    <th></th>
-  </tr>
-</table>
-  <div class="col-md-4 col-md-offset-4" style="margin-top: 15px; margin-bottom: 15px:">
-    <%= f.submit "新規登録", class: "btn btn-success w-50" %>
-  </div>
-<% end %>
-</div>
 <div class="row">
-  <h4 class="col-md-2 title-color" style="margin-left: 50px;">既に登録済みの方</h4>
+  <h4 class="col-md-2 title-color devise-registrations-new-sign-up-title">既に登録済みの方</h4>
 </div>
-<div style="margin-left: 50px;">
-<%= render "devise/shared/links" %> からログインしてください
-</div>
+<div class="devise-registrations-new-sign-up-message">
+  <%= render "devise/shared/links" %> からログインしてください
 </div>

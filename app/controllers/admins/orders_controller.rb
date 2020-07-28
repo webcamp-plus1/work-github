@@ -4,10 +4,10 @@ class Admins::OrdersController < ApplicationController
 	def index
 		if request.referer&.include?("/admins/member")
 			count_order = Order.where('created_at > ?', Time.current.beginning_of_day).where('created_at < ?', Time.current.end_of_day)
-    		@orders = count_order.page(params[:page]).reverse_order
+    	@orders = count_order.all
 		else
 			@orders = Order.page(params[:page]).reverse_order
-  		end
+  	end
 	end
 	#メンバーごとの注文履歴
 	def member_orders
@@ -29,10 +29,9 @@ class Admins::OrdersController < ApplicationController
 	  end
 	  redirect_to request.referer
   	end
-
-  	private
-  	def order_params
-  		params.require(:order).permit(:status)
-  	end
+  
+  private
+  def order_params
+  	params.require(:order).permit(:status)
+  end
 end
-

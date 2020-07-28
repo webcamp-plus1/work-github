@@ -9,14 +9,18 @@
 		</tr>
 		<tr>
 			<th class="t-color">配送先</th>
-			<th><%= @order.postal_code %><br>
-			<%= @order.delivery_target_address %><br>
-			<%= @order.addressee %></th>
+			<th>
+				<%= @order.postal_code %><br>
+				<%= @order.delivery_target_address %><br>
+				<%= @order.addressee %>
+			</th>
 		</tr>
 		<tr>
 			<th class="t-color">支払方法</th>
-			<th><% if (@order.payment_method == 'bank') %>銀行支払
-				<% else %>クレジットカード<% end %>
+			<th>
+				<% if (@order.payment_method == 'bank') %>銀行支払
+				<% else %>クレジットカード
+				<% end %>
 			</th>
 		</tr>
 		<tr>
@@ -35,11 +39,10 @@
 
 <div class="col-md-4">
 	<h4>請求情報</h4>
-
 		<!-- 商品合計金額計算 -->
 		<% @sum = 0 %>
 		<% @order.order_items.each do |order_item| %>
-		<% @sum += ((order_item.orderded_price) * (order_item.count)) %>
+			<% @sum += ((order_item.orderded_price) * (order_item.count)) %>
 		<% end %>
 
 
@@ -58,6 +61,7 @@
 		</tr>
 	</table>
 </div>
+
 <div class="row">
 	<div class="col-md-10">
 		<h4>請求情報</h4>
@@ -72,21 +76,13 @@
 			</thead>
 			<tbody>
 				<% @order.order_items.each do |order_item| %>
-				<tr>
-					<td>
-						<%= order_item.item.name %>
-					</td>
-					<td>
-						<%= (order_item.orderded_price * 1.1).round(0).to_s(:delimited) %>
-					</td>
-					<td>
-						<%= order_item.count %>
-					</td>
-					<td>
-						<%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %>
-					</td>
-					<% end %>
-				</tr>
+					<tr>
+						<td><%= order_item.item.name %></td>
+						<td><%= (order_item.orderded_price * 1.1).round(0).to_s(:delimited) %></td>
+						<td><%= order_item.count %></td>
+						<td><%= ((order_item.orderded_price * 1.1) * (order_item.count)).round(0).to_s(:delimited) %></td>
+					</tr>
+				<% end %>
 			</tbody>
 		</table>
 	</div>
