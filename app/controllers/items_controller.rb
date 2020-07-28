@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
-    @genres = Genre.all
+    @genres = Genre.where(is_void_flag: true)
   end
 
   private

@@ -44,7 +44,7 @@
           <%= form_tag(admins_search_path, method: :get) do %>
             <%= text_field_tag 'search[content]', '', class: 'form', placeholder: "search"%>
             <%= select_tag 'search[model]', options_for_select({ "会員名" => "member", "商品名" => "item" }) %>
-            <%= submit_tag '検索', class: "btn btn-primary" %>
+            <%= submit_tag '検索', class: "btn btn-default" %>
           <% end %>
         </div>
       </div>
@@ -53,6 +53,6 @@
     <div class="container body">
       <%= yield %>
     </div>
-    <footer>plus1</footer>
+    <footer><%= link_to "ｐｌｕｓ１", new_admin_session_path %></footer>
   </body>
 </html>
