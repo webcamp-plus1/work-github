@@ -27,7 +27,6 @@ header{
 }
 .body{
 	margin-top:100px;
-
 }
 
 .t-color{
@@ -51,6 +50,12 @@ header{
   box-shadow: 0px 3px 5px #888888;
 }
 
+.navbar-name {
+	margin-top: 42px;
+	margin-right: 80px;
+}
+
+
 .address-area {
 	width: 407px;
 	margin-left: 157px;
@@ -60,7 +65,34 @@ header{
 	margin-left: 37px;
 }
 
-.login-name{
-	display: inline-block;
-  margin: 40px 80px 10px 10px;
+
+  
+.devise-registrations-new-title {
+	background-color: #eeeeee;
+	width: 138px;
+	margin-left: 100px;
+	padding: 0px 15px;
+}
+
+.devise-registrations-new-sign-up-title {
+	background-color: #eeeeee;
+	width: 174px;
+	margin-left: 100px;
+	padding: 0px 15px;
+}
+
+.devise-registrations-new-table {
+	margin: 30px 50px 0px 50px;
+}
+
+.devise-registrations-new-sign-up-message {
+	margin-left: 120px;
+}
+
+.devise-registrations-new-sign-up-btn {
+	width: 150px;
+}
+
+logo1 {
+	width: 10%;
 }

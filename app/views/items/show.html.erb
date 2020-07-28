@@ -4,7 +4,7 @@
 			<tr>
 				<th>ジャンル検索</th>
 			</tr>
-				<% @genres.each do |genre| %>
+			<% @genres.each do |genre| %>
 			<tr>
 				<th>
 				<%= link_to item_search_path(genre_id: genre.id) do %>
@@ -12,7 +12,7 @@
 				<% end %>
 				</th>
 			</tr>
-				<% end %>
+			<% end %>
 		</table>
 	</div>
 
@@ -26,17 +26,17 @@
 
 	<div class="col-md-4 item-show-table">
 		<table class="table-condensed">
-		<tr>
-			<th><%= @item.name %></th>
-		</tr>
-		<tr>
-			<th><%= @item.description %></th>
-		</tr>
-		<tr>
-			<th>￥<%= (@item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %>円（税込）</th>
-		</tr>
-	</table>
-	<% if @item.is_sales_status == true %>
+			<tr>
+				<th><%= @item.name %></th>
+			</tr>
+			<tr>
+				<th><%= @item.description %></th>
+			</tr>
+			<tr>
+				<th>￥<%= (@item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %>円（税込）</th>
+			</tr>
+		</table>
+		<% if @item.is_sales_status == true %>
 		<div class="item-show-btn">
 			<%= form_for(@item_post, url: members_carts_path, method: :post) do |f| %>
 			<%= f.number_field :count,min:1,max:100, value: 1 %>
@@ -46,7 +46,7 @@
 			<% end %>
 		<% else %>
 			<h3>申し訳ございません、只今在庫がない状態です。</h3>
-	<%end %>
-	</div>
+		<%end %>
+		</div>
 	</div>
 </div>

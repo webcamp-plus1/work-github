@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :authenticate_member!
+
   def index
     @deliveries = current_member.deliveries
     @delivery = Delivery.new
@@ -16,12 +17,6 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  def destroy
-    @delivery = Delivery.find(params[:id])
-    @delivery.destroy
-    redirect_to request.referer
-  end
-
   def edit
     @delivery = Delivery.find(params[:id])
   end
@@ -33,6 +28,12 @@ class DeliveriesController < ApplicationController
     else
       redirect_to request.referer
     end
+  end
+
+  def destroy
+    @delivery = Delivery.find(params[:id])
+    @delivery.destroy
+    redirect_to request.referer
   end
 
   private

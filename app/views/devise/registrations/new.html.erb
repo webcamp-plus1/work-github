@@ -1,11 +1,11 @@
 <div class="row">
-  <h4 class="col-xs-2 title-color" style="margin-left: 50px;">新規会員登録　</h4>
+  <h4 class="col-xs-2 title-color devise-registrations-new-title">新規会員登録</h4>
 </div>
-<div class="row">
 
+<div class="row">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-<table class="table-condensed" style="margin: 30px 50px 0px 50px;">
+<table class="table-condensed devise-registrations-new-table">
   <tr>
     <th><%= f.label :名前 %></th>
     <th><%= f.label :'　　(姓）　' %></th>
@@ -69,14 +69,15 @@
   </tr>
 </table>
   <div class="col-md-4 col-md-offset-4" style="margin-top: 15px; margin-bottom: 15px:">
-    <%= f.submit "新規登録", class: "btn btn-success w-50" %>
+    <%= f.submit "新規登録", class: "btn btn-success devise-registrations-new-sign-up-btn" %>
   </div>
 <% end %>
 </div>
+
 <div class="row">
-  <h4 class="col-md-2 title-color" style="margin-left: 50px;">既に登録済みの方</h4>
+  <h4 class="col-md-2 title-color devise-registrations-new-sign-up-title">既に登録済みの方</h4>
 </div>
-<div style="margin-left: 50px;">
+<div class="devise-registrations-new-sign-up-message">
 <%= render "devise/shared/links" %> からログインしてください
 </div>
 </div>
