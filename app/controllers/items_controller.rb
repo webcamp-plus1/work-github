@@ -1,11 +1,18 @@
 class ItemsController < ApplicationController
+
   def index
+    @genres = Genre.where(is_void_flag: true)
+    @ary = Array[@genres]
+    # [
+    #   Genre.find(1),
+    #   Genre.find(2),
+    #   Genre.find(2),
+    # ]
     if params[:genre_id]
       @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
     else
-    	@items = Item.page(params[:page]).reverse_order
+    	@items = Item.where(genre_id: @ary).page(params[:page]).reverse_order
     end
-    @genres = Genre.all
   end
 
   def show
