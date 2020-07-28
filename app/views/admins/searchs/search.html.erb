@@ -1,0 +1,7 @@
+<% if @model == 'member' %>
+  <h3>会員検索 検索ワード：<%= @content %></h3>
+  <%= render 'admins/members/index', members: @records %>
+<% else @model == 'item' %>
+  <h3>商品検索 検索ワード：<%= @content %></h3>
+    <%= render 'admins/items/index', items: @records %>
+<% end %>
