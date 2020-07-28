@@ -7,100 +7,100 @@
 <div class="row">
   <div class="col-md-offset-1">
     <%= form_for(@order, url: "/orders/confirm") do |f| %>
-    <strong class="order-new-choice">支払方法</strong>
-    <div class="order-new-choice-item">
-    	<table>
-    		<tr>
-    			<th>
-            <%= f.radio_button :payment_method, :card, checked: true %>
-            <%= f.label :payment_method, 'クレジットカード' %>
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <%= f.radio_button :payment_method, :bank %>
-            <%= f.label :payment_method, '銀行振込' %>
-          </th>
-    		</tr>
-    	</table>
-    </div>
-
-    <strong class="order-new-choice">お届け先</strong>
-    <div class="order-new-choice-item">
-    	<table>
-    		<tr>
-    			<!-- ラジオボタンif文で保存するデータを変更する -->
-    			<th>
-            <%= f.radio_button :d_address, :current_member, checked: true %>
-            <%= f.label :d_address, 'ご自身の住所' %>
-          </th>
-        </tr>
-      </table>
-      <div class="order-new-choice-item-address">
+      <strong class="order-new-choice">支払方法</strong>
+      <div class="order-new-choice-item">
         <table>
-          <tr>
+    		  <tr>
             <th>
-              <%= current_member.postal_code %>
-              <%= current_member.address %>
+              <%= f.radio_button :payment_method, :card, checked: true %>
+              <%= f.label :payment_method, 'クレジットカード' %>
             </th>
           </tr>
           <tr>
             <th>
-              <%= current_member.last_name %>
-              <%= current_member.first_name %>
+              <%= f.radio_button :payment_method, :bank %>
+              <%= f.label :payment_method, '銀行振込' %>
+            </th>
+    		  </tr>
+        </table>
+      </div>
+
+      <strong class="order-new-choice">お届け先</strong>
+      <div class="order-new-choice-item">
+        <table>
+    		  <tr>
+    			 <!-- ラジオボタンif文で保存するデータを変更する -->
+            <th>
+              <%= f.radio_button :address_selection, :current_member, checked: true %>
+              <%= f.label :address_selection, 'ご自身の住所' %>
             </th>
           </tr>
         </table>
+        <div class="order-new-choice-item-address">
+          <table>
+            <tr>
+              <th>
+                <%= current_member.postal_code %>
+                <%= current_member.address %>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <%= current_member.last_name %>
+                <%= current_member.first_name %>
+              </th>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div class="order-new-choice-item">
-      <table>
-        <tr>
-          <th>
-          <!-- deliveriesはコントローラー側で処理を変えればOK -->
-            <%= f.radio_button :d_address, :deliveries %>
-            <%= f.label :d_address, '登録済住所から選択' %>
-          </th>
-        </tr>
-      </table>
-      <div class="order-new-choice-item-address">
+      <div class="order-new-choice-item">
         <table>
           <tr>
-            <th><%= f.collection_select :member_id, current_member.deliveries, :id, :ffff %></th>
+            <th>
+            <!-- deliveriesはコントローラー側で処理を変えればOK -->
+              <%= f.radio_button :address_selection, :registered_address %>
+              <%= f.label :address_selection, '登録済住所から選択' %>
+            </th>
           </tr>
         </table>
+        <div class="order-new-choice-item-address">
+          <table>
+            <tr>
+              <th><%= f.collection_select :member_id, current_member.deliveries, :id, :delivery_destination %></th>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div class="order-new-choice-item">
-      <table>
-        <tr>
-          <th>
-          <!-- deliveriesはコントローラー側で処理を変えればOK -->
-            <%= f.radio_button :d_address, :new_deli %>
-            <%= f.label :d_address, '新しい住所' %><br>
-          </th>
-        </tr>
-      </table>
-      <div class="order-new-choice-item-address">
-        <table class="table-condensed">
+      <div class="order-new-choice-item">
+        <table>
           <tr>
-            <th><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></th>
-            <th><%= f.text_field :postal_code, class: "postal_code" %></th>
-          </tr>
-          <tr>
-            <th><%= f.label :destination, '住所' %></th>
-            <th><%= f.text_field :destination, class: "destination" %></th>
-          </tr>
-          <tr>
-            <th><%= f.label :destination, '宛名' %></th>
-            <th><%= f.text_field :addressee, class: "addressee" %></th>
+            <th>
+            <!-- deliveriesはコントローラー側で処理を変えればOK -->
+              <%= f.radio_button :address_selection, :new_address %>
+              <%= f.label :address_selection, '新しい住所' %><br>
+            </th>
           </tr>
         </table>
+        <div class="order-new-choice-item-address">
+          <table class="table-condensed">
+            <tr>
+              <th><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></th>
+              <th><%= f.text_field :postal_code, class: "postal_code" %></th>
+            </tr>
+            <tr>
+              <th><%= f.label :destination, '住所' %></th>
+              <th><%= f.text_field :destination, class: "destination" %></th>
+            </tr>
+            <tr>
+              <th><%= f.label :destination, '宛名' %></th>
+              <th><%= f.text_field :addressee, class: "addressee" %></th>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-    	<%= f.submit "確認画面へ進む", class: "btn btn-primary col-md-2 col-md-offset-4 order-new-btn" %>
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary col-md-2 col-md-offset-4 order-new-btn" %>
     <% end %>
   </div>
 </div>

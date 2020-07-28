@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_member!
+  
   def new
     @order = Order.new
     @deliveries = Delivery.all
@@ -11,22 +12,20 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.member = current_member
     @cart_items = current_member.cart_items.all
-    if @order.d_address == 'current_member'
+    if @order.address_selection == 'current_member'
       @order.postal_code = current_member.postal_code
       @order.delivery_target_address = current_member.address
       @order.addressee = current_member.last_name + current_member.first_name
-    elsif @order.d_address == 'deliveries'
-      @add = Delivery.find_by(id: params[:order][:member_id])
-      @order.postal_code = @add.postal_code
-      @order.delivery_target_address = @add.destination
-      @order.addressee = @add.addressee
-    elsif @order.d_address == 'new_deli'
+    elsif @order.address_selection == 'registered_address'
+      @registered_delivery = Delivery.find_by(id: params[:order][:member_id])
+      @order.postal_code = @registered_delivery.postal_code
+      @order.delivery_target_address = @registered_delivery.destination
+      @order.addressee = @registered_delivery.addressee
+    elsif @order.address_selection == 'new_address'
       @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
-
       @order.postal_code = @order.postal_code
       @order.delivery_target_address = @order.destination
       @order.addressee = @order.addressee
-
       if params[:order][:postal_code] == "" || params[:order][:destination] == "" || params[:order][:addressee] == ""
         @deliveries = Delivery.all
         @member_id = current_member.id
@@ -57,7 +56,6 @@ class OrdersController < ApplicationController
       end
   end
 
-
   def done
   end
 
@@ -70,9 +68,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-
   private
-    def order_params
-      params.require(:order).permit(:addressee, :postal_code, :delivery_target_address, :payment_method, :d_address, :destination, :member_id, :tortal_prace)
-    end
+  def order_params
+    params.require(:order).permit(:member_id, :addressee, :postal_code, :delivery_target_address, :payment_method, :destination, :tortal_prace, :address_selection)
+  end
 end

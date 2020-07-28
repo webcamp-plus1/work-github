@@ -16,29 +16,29 @@
 
 			<tbody>
 				<% @orders.each do |order| %>
-				<tr>
-					<td><%= order.created_at.to_s(:datetime_jp)  %></td>
-					<td><%= order.postal_code %><br>
-					<%= order.delivery_target_address %><br>
-					<%= order.addressee %></td>
-					<td>
-						<% order.order_items.each do |order_item| %>
-							<p><%= order_item.item.name %></p>
-						<% end %>
-					</td>
-					<td><%= order.tortal_prace %></td>
-					<td>
-						<% if (order.status == 'waiting')%>入金待ち
-		     			<% elsif (order.status == 'confirm')%>入金確認
-		     			<% elsif (order.status == 'in_production')%>製作中
-		     			<% elsif (order.status == 'preparing')%>発送準備中
-		     			<% elsif (order.status == 'done')%>発送済み
-		     			<% end %>
-					</td>
-					<td>
-						<%= link_to '注文詳細', order_path(order.id), class: "btn btn-info" %>
-					</td>
-				</tr>
+					<tr>
+						<td><%= order.created_at.to_s(:datetime_jp)  %></td>
+						<td>
+							<%= order.postal_code %><br>
+							<%= order.delivery_target_address %><br>
+							<%= order.addressee %>
+						</td>
+						<td>
+							<% order.order_items.each do |order_item| %>
+								<p><%= order_item.item.name %></p>
+							<% end %>
+						</td>
+						<td><%= order.tortal_prace %></td>
+						<td>
+							<% if (order.status == 'waiting')%>入金待ち
+			     		<% elsif (order.status == 'confirm')%>入金確認
+			     		<% elsif (order.status == 'in_production')%>製作中
+			     		<% elsif (order.status == 'preparing')%>発送準備中
+			     		<% elsif (order.status == 'done')%>発送済み
+			     		<% end %>
+						</td>
+						<td><%= link_to '注文詳細', order_path(order.id), class: "btn btn-info" %></td>
+					</tr>
 				<% end %>
 			</tbody>
 		</table>
