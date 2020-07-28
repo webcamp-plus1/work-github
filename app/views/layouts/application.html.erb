@@ -4,22 +4,20 @@
     <title>WorkGithub</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-<!-- header-nav  リンク先はのちに追記します -->
     <header class="navbar navbar-fixed-top">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <span class="col-8"><%= link_to "NaganoCake", "/" %></span>
         </nav>
         <nav>
-          <ul class="nav navbar-nav navbar-right"　>
+          <ul class="nav navbar-nav navbar-right">
             <% if member_signed_in? %>
-              <li><%= current_member.last_name %><%= current_member.first_name %>　様ログイン中</li>
+              <li class="navbar-name">ようこそ、<%= current_member.last_name %><%= current_member.first_name %>さん !</li>
               <li><%= link_to "マイページ", members_mypage_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to '商品一覧', items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'カート', members_carts_path, class: "btn btn-default btn-sm nav-btn" %></li>
@@ -42,17 +40,16 @@
       </div>
       <% if admin_signed_in? %>
       <div class="row">
-          <div class="col-md-offset-9">
+        <div class="col-md-offset-9">
           <%= form_tag do %>
-            <%= text_field_tag :search %>
+          <%= text_field_tag :search %>
           <% end %>
-          </div>
         </div>
       </div>
       <% end %>
     </header>
-  <div class="container body">
-    <%= yield %>
-  </div>
+    <div class="container body">
+      <%= yield %>
+    </div>
   </body>
 </html>

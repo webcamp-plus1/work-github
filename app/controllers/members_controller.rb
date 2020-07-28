@@ -28,11 +28,9 @@ class MembersController < ApplicationController
     flash[:notice] = "ありがとうございました、またのご利用を心からお待ちしております。"
     redirect_to new_member_session_path
   end
-  
-  private
 
+  private
   def member_params
     params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :phone_number, :is_unsubscribe_status)
   end
-
 end
