@@ -17,16 +17,8 @@
 @import "bootstrap";            /*ここを追加*/
 
 
-header{
-	.navbar-left{
-		span{
-			font-size:20px;
-			padding-top:10px;
-		}
-	}
-}
 .body{
-	margin-top:100px;
+	margin-top:150px;
 }
 
 .t-color{
@@ -53,6 +45,7 @@ header{
 .navbar-name {
 	margin-top: 42px;
 	margin-right: 80px;
+	color: #f9f9f9;
 }
 
 
@@ -66,7 +59,6 @@ header{
 }
 
 
-  
 .devise-registrations-new-title {
 	background-color: #eeeeee;
 	width: 138px;
@@ -93,6 +85,29 @@ header{
 	width: 150px;
 }
 
-logo1 {
-	width: 10%;
+.header-logo {
+	width: 150px;
+	height: 90px;
+	margin-top: 10px;
+}
+
+footer {
+	text-align: center;
+	width: 100%;
+	font-size:18px;
+	color: #ffffff;
+	background-color: #753742;
+	height: 80px;
+	line-height: 80px;
+	position: absolute;
+	bottom: 0;
+}
+
+header {
+	background-color: #753742;
+}
+
+body {
+	color: #000000;
+	background-color: #F0F3F5;
 }
