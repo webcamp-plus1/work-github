@@ -4,7 +4,7 @@ class Admins::OrdersController < ApplicationController
 	def index
 		if request.referer&.include?("/admins/member")
 			count_order = Order.where('created_at > ?', Time.current.beginning_of_day).where('created_at < ?', Time.current.end_of_day)
-    	@orders = count_order.page(params[:page]).reverse_order
+    	@orders = count_order.all
 		else
 			@orders = Order.page(params[:page]).reverse_order
   	end
