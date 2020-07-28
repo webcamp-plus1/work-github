@@ -30,30 +30,30 @@ class OrdersController < ApplicationController
         @deliveries = Delivery.all
         @member_id = current_member.id
         render 'new'
-      else
-        @delivery.save!
       end
     end
   end
 
   def create
-      @order = Order.new(order_params)
-      @order.member = current_member
-      if @order.save!
-        @cart_items = current_member.cart_items.all
-        @cart_items.each do |cart_item|
-          @order_items = OrderItem.new
-          @order_items.order_id = @order.id
-          @order_items.item_id = cart_item.item.id
-          @order_items.count = cart_item.count
-          @order_items.orderded_price = cart_item.item.tax_excluded_price
-          @order_items.save
-        end
-        current_member.cart_items.destroy_all
-        redirect_to orders_done_path
-      else
-        render 'confirm'
+    @order = Order.new(order_params)
+    @order.member = current_member
+    if @order.save!
+      @cart_items = current_member.cart_items.all
+      @cart_items.each do |cart_item|
+        @order_items = OrderItem.new
+        @order_items.order_id = @order.id
+        @order_items.item_id = cart_item.item.id
+        @order_items.count = cart_item.count
+        @order_items.orderded_price = cart_item.item.tax_excluded_price
+        @order_items.save
       end
+      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
+      @delivery.save
+      current_member.cart_items.destroy_all
+      redirect_to orders_done_path
+    else
+      render 'confirm'
+    end
   end
 
   def done
