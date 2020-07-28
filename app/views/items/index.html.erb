@@ -8,7 +8,7 @@
 			<tr>
 				<th>
 					<% if genre.is_void_flag == true %>
-					  <!-- itemテーブルのgenre_idカラムに　genre.idを追加し、genre.nameを表示させる -->
+					  <!-- itemテーブルのgenre_idカラムにgenre.idを追加し、genre.nameを表示させる -->
 						<%= link_to item_search_path(genre_id: genre.id) do %>
 						<%= genre.name %>
 						<% end %>
