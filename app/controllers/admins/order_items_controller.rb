@@ -1,7 +1,8 @@
 class Admins::OrderItemsController < Admins::OrdersController
 	before_action :authenticate_admin!
+
 	def update
-    @order_item = OrderItem.find(params[:id])
+	 @order_item = OrderItem.find(params[:id])
 	  if @order_item.update(order_item_params)
 	  	if @order_item.production_status == 'in_production'
 	  		@order_item.order.update(status: "in_production")
@@ -15,7 +16,7 @@ class Admins::OrderItemsController < Admins::OrdersController
 	  	end
 	    redirect_to request.referer
 	  end
-  end
+	 end
 
   private
   def order_item_params

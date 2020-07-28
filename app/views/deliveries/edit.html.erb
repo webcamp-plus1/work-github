@@ -6,22 +6,26 @@
 
 <div class="row">
 	<div class="col">
-<%= form_for(@delivery) do |f| %>
-<table class="table-condensed">
-	<tr>
-		<th>郵便番号(ハイフンなし)</th>
-		<th><%= f.text_field :postal_code, class: "postal_code" %></th>
-	</tr>
-		<tr>
-		<th>住所</th>
-		<th><%= f.text_field :destination, class: "destination" %></th>
-	</tr>
-	<tr>
-		<th>宛名</th>
-		<th><%= f.text_field :addressee, class: "addressee" %></th>
-	</tr>
-</table>
-<%= f.submit "編集する", class: "btn btn-primary delivery-edit-btn" %>
-<% end %>
-</div>
+		<%= form_for(@delivery) do |f| %>
+		<table class="table-condensed">
+			<tr>
+				<th>郵便番号(ハイフンなし)</th>
+				<th><%= f.text_field :postal_code, class: "postal_code" %></th>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<th><%= f.text_field :destination, class: "destination" %></th>
+			</tr>
+			<tr>
+				<th>宛名</th>
+				<th><%= f.text_field :addressee, class: "addressee" %></th>
+			</tr>
+			<tr>
+				<th></th>
+				<th></th>
+				<th><%= f.submit "編集する", class: "btn btn-primary" %></th>
+			</tr>
+		</table>
+		<% end %>
+	</div>
 </div>

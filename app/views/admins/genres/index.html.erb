@@ -23,6 +23,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="row">
   <div class="col-xs-5">
     <table class="table table-bordered">
@@ -38,8 +39,10 @@
           <tr>
             <td><%= genre.name %></td>
             <td>
-              <% if (genre.is_void_flag == true) %>有効
-              <% else %>無効
+              <% if (genre.is_void_flag == true) %>
+                有効
+              <% else %>
+                無効
               <% end %>
             </td>
             <td>

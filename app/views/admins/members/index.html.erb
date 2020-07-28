@@ -14,19 +14,28 @@
 		<tbody>
 			<% @members.each do |member| %>
 			<tr>
-				<td><%= member.id %></td>
+				<td>
+					<%= member.id %>
+				</td>
 				<td>
 					<%= link_to admins_member_path(member) do %>
 					<%= member.last_name %>
 					<%= member.first_name %>
 					<% end %>
 				</td>
-				<td><%= member.email %></td>
-				<td><% if (member.is_unsubscribe_status == true) %>退会済
-                <% else %>有効<% end %></td>
+
+				<td>
+					<%= member.email %>
+				</td>
+				<td>
+					<% if (member.is_unsubscribe_status == true) %>
+						退会済
+                	<% else %>
+                		有効
+                	<% end %>
+                </td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-
 </div>

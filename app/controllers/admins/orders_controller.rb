@@ -9,7 +9,7 @@ class Admins::OrdersController < ApplicationController
 			@orders = Order.page(params[:page]).reverse_order
   	end
 	end
-
+	#メンバーごとの注文履歴
 	def member_orders
 		@member = Member.find(params[:id])
 	end
@@ -19,7 +19,7 @@ class Admins::OrdersController < ApplicationController
 	end
 
 	def update
-    @order = Order.find(params[:id])
+      @order = Order.find(params[:id])
 	  if @order.update(order_params)
 	  	if @order.status == 'confirm'
 	  		@order.order_items.each do |order_item|
@@ -28,8 +28,8 @@ class Admins::OrdersController < ApplicationController
 	  	end
 	  end
 	  redirect_to request.referer
-  end
-
+  	end
+  
   private
   def order_params
   	params.require(:order).permit(:status)

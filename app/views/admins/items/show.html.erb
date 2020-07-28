@@ -3,36 +3,54 @@
 		<h2 class="admins-item-show-title">商品詳細</h2>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-md-4 col-md-offset-1">
 		<%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
 	</div>
+
 	<div class="col-md-5">
 		<table class="table-condensed">
 			<tr>
 				<th>商品名</th>
-				<th><%= @item.name %></th>
+				<th>
+					<%= @item.name %>
+				</th>
 			</tr>
 			<tr>
 				<th>商品説明</th>
-				<th><%= @item.description %></th>
+				<th>
+					<%= @item.description %>
+				</th>
 			</tr>
 			<tr>
 				<th>ジャンル</th>
-				<th><%= @item.genre.name %></th>
+				<th>
+					<%= @item.genre.name %>
+				</th>
 			</tr>
 			<tr>
 				<th>税込価格（税抜価格）</th>
-				<th><%= (@item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %>円(<%= @item.tax_excluded_price.to_s(:delimited) %>円)</th>
+				<!-- .round(0)は小数点以下を表示させない -->
+				<th>
+					<%= (@item.tax_excluded_price * 1.1).round(0).to_s(:delimited) %>円(<%= @item.tax_excluded_price.to_s(:delimited) %>円)
+				</th>
 			</tr>
 			<tr>
 				<th>販売ステータス</th>
-				<th><% if (@item.is_sales_status == true) %>販売中
-                <% else %>販売停止中<% end %></th>
+				<th>
+					<!-- 販売ステータスの有無での商品表示 -->
+					<% if (@item.is_sales_status == true) %>
+						販売中
+                	<% else %>
+                		販売停止中
+                	<% end %>
+                </th>
 			</tr>
 		</table>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-md-offset-8">
 		<%= link_to "編集する",  edit_admins_item_path(@item), data: {"turbolinks"=>false}, class: "btn btn-success btn-lg" %>

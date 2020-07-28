@@ -25,3 +25,41 @@ ja:
         postal_code: "郵便番号"
         destination: "住所"
         addressee: "宛名"
+
+  activerecord:
+    errors:
+      models:
+        member:
+          attributes:
+            email:
+              blank: "を入力して下さい"
+            password:
+              blank: "を入力して下さい"
+            last_name:
+              blank: "を入力して下さい"
+            first_name:
+              blank: "を入力して下さい"
+            last_name_kana:
+              blank: "を入力して下さい"
+            first_name_kana:
+              blank: "を入力して下さい"
+            postal_code:
+              blank: "を入力して下さい"
+            address:
+              blank: "を入力して下さい"
+            phone_number:
+              blank: "を入力して下さい"
+    models:
+      member:
+    attributes:
+      member:
+        email: "メールアドレス"
+        password: "パスワード"
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "セイ"
+        first_name_kana: "メイ"
+        postal_code: "郵便番号"
+        address: "住所"
+        phone_number: "電話番号"
+

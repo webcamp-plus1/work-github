@@ -9,7 +9,7 @@
 				<tr>
 					<th>配送先</th>
 					<th>
-						〒 <%= @order.postal_code %> <%= @order.delivery_target_address %><br>
+						〒 <%= @order.postal_code %> <%= @order.delivery_target_address %> <br>
 						 <%= @order.addressee %>
 					</th>
 				</tr>
@@ -48,6 +48,7 @@
 					<th></th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<% @order.order_items.each do |order_item| %>
 					<tr>
@@ -64,7 +65,7 @@
 			</tbody>
 		</table>
 	</div>
-	
+  
 	<div class="col-md-4">
 		<% @sum = 0 %>
 		<% @order.order_items.each do |order_item| %>
@@ -75,7 +76,9 @@
 			<tr>　</tr>
 			<tr>
 				<th>商品合計　</th>
-				<th><%= ((@sum) * 1.1).round(0).to_s(:delimited) %>円</th>
+				<th>
+					<%= ((@sum) * 1.1).round(0).to_s(:delimited) %>円
+				</th>
 			</tr>
 			<tr>
 				<th>送料　</th>
@@ -83,7 +86,9 @@
 			</tr>
 			<tr>
 				<th>請求金額合計　</th>
-				<th><%= (((@sum) * 1.1) + 800).round(0).to_s(:delimited) %>円</th>
+				<th>
+					<%= (((@sum) * 1.1) + 800).round(0).to_s(:delimited) %>円
+				</th>
 			</tr>
 		</table>
 	</div>

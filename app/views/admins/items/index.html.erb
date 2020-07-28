@@ -3,12 +3,14 @@
 		<h2 class="admins-item-index-title">商品一覧</h2>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-md-1 col-md-offset-10">
 		<%= link_to new_admins_item_path, data: {"turbolinks"=>false} do %>
 			<button type="button" class="admins-item-index-btn">＋</button>
 		<% end %>
 	</div>
+
 	<div class="col-md-10 col-md-offset-1">
 		<table class="table table-bordered">
 			<thead class="t-color">
@@ -20,22 +22,30 @@
 					<th>ステータス</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<% @items.each do |item| %>
 					<tr>
 						<th><%= item.id %></th>
 						<th>
 							<%= link_to admins_item_path(item) do %>
-								<%= item.name %></th>
+								<%= item.name %>
 							<% end %>
-						<th><%= (item.tax_excluded_price).to_s(:delimited) %>円</th>
-						<th><%= item.genre.name %></th>
+						</th>
 						<th>
-							<% if (item.is_sales_status == true) %>販売中
-		     			<% else %>販売停止中
-		     			<% end %>
-		     		</th>
-		      </tr>
+							<%= (item.tax_excluded_price).to_s(:delimited) %>円
+						</th>
+						<th>
+							<%= item.genre.name %>
+						</th>
+						<th>
+							<% if (item.is_sales_status == true) %>
+								販売中
+		     				<% else %>
+		     					販売停止中
+		     				<% end %>
+		     			</th>
+		      		</tr>
 				<% end %>
 			</tbody>
 		</table>
