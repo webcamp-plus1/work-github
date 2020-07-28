@@ -33,8 +33,11 @@
 				<% end %>
 			</tbody>
 		</table>
-		<div class="col-xs-offset-5">
-			<%= paginate @orders %>
-		</div>
+		<% if request.referer&.include?("/admins/member") %>
+		<% else %>
+			<div class="col-xs-offset-5">
+				<%= paginate @orders %>
+			</div>
+		<% end %>
 	</div>
 </div>
