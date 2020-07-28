@@ -8,10 +8,8 @@ Rails.application.routes.draw do
   sessions: 'admins/sessions'
   }
 
-  devise_for :members, :controllers => {
-    :registrations => 'members/registrations',
-    :sessions => 'members/sessions'
-  }
+  devise_for :members
+  
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
