@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'admins/member', to: 'members#top', as: 'admin_top'
     get 'members/:id/orders'=>'orders#member_orders'
+    get '/search', to: 'searchs#search'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
     resources :members
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
   get 'orders/done', to: 'orders#done'
   resources :orders
 
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

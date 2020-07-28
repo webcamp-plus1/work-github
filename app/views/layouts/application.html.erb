@@ -17,15 +17,13 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if member_signed_in? %>
-
               <li class="navbar-name">ようこそ、<%= current_member.last_name %><%= current_member.first_name %>さん !</li>
-
               <li><%= link_to "マイページ", members_mypage_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to '商品一覧', items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'カート', members_carts_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "btn btn-default btn-sm nav-btn" %></li>
             <% elsif admin_signed_in? %>
-              <li class="login-name">管理者ログイン中</li>
+              <li class="navbar-name">管理者ログイン中</li>
               <li><%= link_to "商品一覧", admins_items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to "会員一覧", admins_members_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to "注文履歴一覧", admins_orders_path, class: "btn btn-default btn-sm nav-btn" %></li>
@@ -42,9 +40,11 @@
       </div>
       <% if admin_signed_in? %>
       <div class="row">
-        <div class="col-md-offset-9">
-          <%= form_tag do %>
-          <%= text_field_tag :search %>
+        <div class="col-md-offset-8">
+          <%= form_tag(admins_search_path, method: :get) do %>
+            <%= text_field_tag 'search[content]', '', class: 'form', placeholder: "search"%>
+            <%= select_tag 'search[model]', options_for_select({ "会員名" => "member", "商品名" => "item" }) %>
+            <%= submit_tag '検索', class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
