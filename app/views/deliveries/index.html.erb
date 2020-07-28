@@ -7,38 +7,28 @@
 <div class="row">
 	<div class="col">
 		<%= form_for(@delivery) do |f| %>
-			<table class="table-condensed">
+		<table class="table-condensed">
 			<ul>
-         		<% @delivery.errors.full_messages.each do |message| %>
-           		<li><%= message %></li>
-         		<% end %>
-       		</ul>
-				<tr>
-					<th>郵便番号(ハイフンなし)</th>
-					<th>
-						<%= f.text_field :postal_code, class: "postal_code" %>
-					</th>
-				</tr>
-				<tr>
-					<th>住所</th>
-					<th>
-						<%= f.text_field :destination, class: "destination" %>
-					</th>
-				</tr>
-				<tr>
-					<th>宛名</th>
-					<th>
-						<%= f.text_field :addressee, class: "addressee" %>
-					</th>
-					<th></th>
-					<th>
-						<%= f.submit "登録する", class: "btn-sm btn-success success-btn" %>
-					</th>
-				</tr>
-			</table>
+     		<% @delivery.errors.full_messages.each do |message| %>
+       		<li><%= message %></li>
+     		<% end %>
+   		</ul>
+			<tr>
+				<th>郵便番号(ハイフンなし)</th>
+				<th><%= f.text_field :postal_code, class: "postal_code" %></th>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<th><%= f.text_field :destination, class: "destination" %></th>
+			</tr>
+			<tr>
+				<th>宛名</th>
+				<th><%= f.text_field :addressee, class: "addressee" %></th>
+				<th><%= f.submit "登録する", class: "btn-sm btn-success success-btn" %></th>
+			</tr>
+		</table>
 		<% end %>
 	</div>
-
 
 	<div class="col-xs-8">
 		<table class="table table-bordered table-condensed" style="margin-top: 20px;">
@@ -58,7 +48,7 @@
 						<td><%= delivery.addressee %></td>
 						<td>
 							<%= link_to "編集する",  edit_delivery_path(delivery), class: "btn-sm btn-primary" %>
-							<%= link_to "削除する", delivery_path(delivery), method: :delete, "data-confirm" => "削除してもいい？・・・・・・・・ホントウニ", class: "btn-sm btn-danger" %>
+							<%= link_to "削除する", delivery_path(delivery), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn-sm btn-danger" %>
 						</td>
 					</tr>
 				<% end %>

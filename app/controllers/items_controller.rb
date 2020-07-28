@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    
     if member_signed_in?
       if current_member.cart_items.find_by(item_id: @item.id)
         @item_post = current_member.cart_items.find_by(item_id: @item.id)
@@ -28,10 +27,8 @@ class ItemsController < ApplicationController
     @genres = Genre.all
   end
 
-
-   private
+  private
   def cart_item_params
     params.require(:cart_item).permit(:count)
   end
-
 end

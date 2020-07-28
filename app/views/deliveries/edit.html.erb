@@ -3,6 +3,7 @@
 		<h4 class="delivery-edit-title">配送先編集</h4>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col">
 <%= form_for(@delivery) do |f| %>
@@ -19,12 +20,8 @@
 		<th>宛名</th>
 		<th><%= f.text_field :addressee, class: "addressee" %></th>
 	</tr>
-	<tr>
-		<th></th>
-		<th></th>
-		<th><%= f.submit "編集する", class: "btn btn-primary" %></th>
-	</tr>
 </table>
+<%= f.submit "編集する", class: "btn btn-primary delivery-edit-btn" %>
 <% end %>
 </div>
 </div>
