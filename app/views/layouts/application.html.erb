@@ -12,14 +12,12 @@
     <header class="navbar navbar-fixed-top">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <span class="col-8"><%= link_to "NaganoCake", "/" %></span>
+          <a href="/"><img src="/assets/logo3.jpg" alt="ロゴ" class="header-logo"></a>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if member_signed_in? %>
-
               <li class="navbar-name">ようこそ、<%= current_member.last_name %><%= current_member.first_name %>さん !</li>
-
               <li><%= link_to "マイページ", members_mypage_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to '商品一覧', items_path, class: "btn btn-default btn-sm nav-btn" %></li>
               <li><%= link_to 'カート', members_carts_path, class: "btn btn-default btn-sm nav-btn" %></li>
@@ -53,5 +51,6 @@
     <div class="container body">
       <%= yield %>
     </div>
+    <footer>plus1</footer>
   </body>
 </html>
