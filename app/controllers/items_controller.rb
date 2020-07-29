@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   def index
     @genres = Genre.where(is_void_flag: true)
     @ary = Array[@genres]
@@ -11,7 +10,7 @@ class ItemsController < ApplicationController
     if params[:genre_id]
       @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
     else
-    	@items = Item.where(genre_id: @ary).page(params[:page]).reverse_order
+      @items = Item.where(genre_id: @ary).page(params[:page]).reverse_order
     end
   end
 
@@ -36,6 +35,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def cart_item_params
     params.require(:cart_item).permit(:count)
   end

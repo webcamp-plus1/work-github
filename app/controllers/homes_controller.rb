@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def top
-  	@genres = Genre.where(is_void_flag: true)
+    @genres = Genre.where(is_void_flag: true)
     @ary = Array[@genres]
     # [
     #   Genre.find(1),
@@ -10,7 +10,7 @@ class HomesController < ApplicationController
     if params[:genre_id]
       @items = Item.where(genre_id: params[:genre_id]).all
     else
-    	@items = Item.where(genre_id: @ary).all
+      @items = Item.where(genre_id: @ary).all
     end
   end
 

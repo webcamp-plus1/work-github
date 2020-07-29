@@ -1,13 +1,13 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
 
-	def show
-		@member = current_member
-	end
+  def show
+    @member = current_member
+  end
 
-	def edit
-	  @member = current_member
-	end
+  def edit
+    @member = current_member
+  end
 
   def update
     @member = current_member
@@ -30,7 +30,16 @@ class MembersController < ApplicationController
   end
 
   private
+
   def member_params
-    params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :phone_number, :is_unsubscribe_status)
+    params.require(:member).permit(:last_name,
+                                   :first_name,
+                                   :last_name_kana,
+                                   :first_name_kana,
+                                   :email,
+                                   :postal_code,
+                                   :address,
+                                   :phone_number,
+                                   :is_unsubscribe_status)
   end
 end
