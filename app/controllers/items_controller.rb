@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
   def search
     @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
     @genres = Genre.where(is_void_flag: true)
+    @genre = Genre.find(params[:genre_id])
   end
 
   private
