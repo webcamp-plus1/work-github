@@ -19,6 +19,7 @@
 
 .body{
 	margin-top:150px;
+	flex: 1;
 }
 
 .t-color{
@@ -97,10 +98,9 @@ footer {
 	font-size:18px;
 	color: #ffffff;
 	background-color: #753742;
-	height: 80px;
-	line-height: 80px;
-	position: absolute;
-	bottom: 0;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 50px;
 }
 
 header {
@@ -110,4 +110,7 @@ header {
 body {
 	color: #000000;
 	background-color: #F0F3F5;
+	display: flex;
+	flex-flow: column;
+	min-height: 100vh;
 }

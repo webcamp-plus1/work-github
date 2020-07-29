@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="col-md-9" >
-		<h3>商品一覧<span>(全<%= @items.total_count %>件)</span></h3>
+		<h3><%= @genre.name %>　一覧<span class="item-count-title"> (全<%= @items.total_count %>件)</span></h3>
   	<% @items.each do |item| %>
 			<div class="col-xs-6 col-md-3 item-index" >
 				<%= link_to item_path(item) do %>
