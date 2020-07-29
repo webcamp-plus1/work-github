@@ -5,14 +5,14 @@
 				<th>ジャンル検索</th>
 			</tr>
 			<% @genres.each do |genre| %>
-			<tr>
-				<th>
+				<tr>
+					<th>
 					  <!-- itemテーブルのgenre_idカラムにgenre.idを追加し、genre.nameを表示させる -->
 						<%= link_to item_search_path(genre_id: genre.id) do %>
 						<%= genre.name %>
 						<% end %>
-				</th>
-			</tr>
+					</th>
+				</tr>
 			<% end %>
 		</table>
 	</div>
@@ -23,7 +23,7 @@
 			<div class="col-xs-6 col-md-3 item-index" >
 				<% if item.genre.is_void_flag == true %>
 					<%= link_to item_path(item) do %>
-					<%= attachment_image_tag item, :image, :fill, 180, 120, format: 'jpeg', fallback: "no_image.jpg", size: '180×120', class: "index-item" %></br>
+						<%= attachment_image_tag item, :image, :fill, 180, 120, format: 'jpeg', fallback: "no_image.jpg", size: '180×120', class: "index-item" %></br>
 					<% end %>
 					<%= item.name %></br>
 					¥<%= item.tax_excluded_price.to_s(:delimited) %>
