@@ -22,7 +22,10 @@ class OrdersController < ApplicationController
       @order.delivery_target_address = @registered_delivery.destination
       @order.addressee = @registered_delivery.addressee
     elsif @order.address_selection == 'new_address'
-      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
+      @delivery = Delivery.new('member_id' => current_member.id,
+                               'postal_code' => @order.postal_code,
+                               'destination' => @order.destination,
+                               'addressee' => @order.addressee)
       @order.postal_code = @order.postal_code
       @order.delivery_target_address = @order.destination
       @order.addressee = @order.addressee
@@ -47,7 +50,10 @@ class OrdersController < ApplicationController
         @order_items.orderded_price = cart_item.item.tax_excluded_price
         @order_items.save
       end
-      @delivery = Delivery.new('member_id' => current_member.id, 'postal_code' => @order.postal_code, 'destination' => @order.destination, 'addressee' => @order.addressee )
+      @delivery = Delivery.new('member_id' => current_member.id,
+                               'postal_code' => @order.postal_code,
+                               'destination' => @order.destination,
+                               'addressee' => @order.addressee)
       @delivery.save
       current_member.cart_items.destroy_all
       redirect_to orders_done_path
@@ -69,7 +75,15 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_params
-    params.require(:order).permit(:member_id, :addressee, :postal_code, :delivery_target_address, :payment_method, :destination, :tortal_prace, :address_selection)
+    params.require(:order).permit(:member_id,
+                                  :addressee,
+                                  :postal_code,
+                                  :delivery_target_address,
+                                  :payment_method,
+                                  :destination,
+                                  :tortal_prace,
+                                  :address_selection)
   end
 end

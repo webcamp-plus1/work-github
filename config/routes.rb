@@ -1,21 +1,21 @@
 Rails.application.routes.draw do
   get 'members/mypage', to: 'members#show'
   resource :members, only: [:edit, :update] do
-        resources :carts, only: [:create, :index, :update, :destroy]
-        delete :carts, to: 'carts#destroy_all'
+    resources :carts, only: [:create, :index, :update, :destroy]
+    delete :carts, to: 'carts#destroy_all'
   end
   devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
+    sessions: 'admins/sessions',
   }
 
   devise_for :members
-  
+
   root :to => 'homes#top'
   get 'homes/about', to: 'homes#about'
 
   namespace :admins do
     get 'admins/member', to: 'members#top', as: 'admin_top'
-    get 'members/:id/orders'=>'orders#member_orders'
+    get 'members/:id/orders' => 'orders#member_orders'
     get '/search', to: 'searchs#search'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'members/edit', to: 'members#edit'
   get '/members/unsubscribe' => 'members#unsubscribe_screen', as: 'unsubscribe_screen'
   patch '/members/unsubscribe' => 'members#unsubscribe', as: 'members_unsubscribe'
-  get '/genres/:genre_id' => 'items#search' , as: 'item_search'
+  get '/genres/:genre_id' => 'items#search', as: 'item_search'
   resources :items, only: [:index, :show, :create]
 
   resources :deliveries, only: [:index, :create, :edit, :destroy, :update]
@@ -36,8 +36,6 @@ Rails.application.routes.draw do
   post 'orders/create', to: 'orders#create', as: 'order_create'
   get 'orders/done', to: 'orders#done'
   resources :orders
-
-  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
