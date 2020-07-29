@@ -5,24 +5,27 @@
 				<th>ジャンル検索</th>
 			</tr>
 			<% @genres.each do |genre| %>
-			<tr>
-				<th>
-					<!-- itemテーブルのgenre_idカラムにgenre.idを追加し、genre.nameを表示させる -->
-					<%= link_to item_search_path(genre_id: genre.id) do %>
-					<%= genre.name %>
-					<% end %>
-				</th>
-			</tr>
+				<tr>
+					<th>
+						<!-- itemテーブルのgenre_idカラムにgenre.idを追加し、genre.nameを表示させる -->
+						<%= link_to item_search_path(genre_id: genre.id) do %>
+						<%= genre.name %>
+						<% end %>
+					</th>
+				</tr>
 			<% end %>
 		</table>
 	</div>
 
 	<div class="col-md-9" >
-		<h3><%= @genre.name %>　一覧<span class="item-count-title"> (全<%= @items.total_count %>件)</span></h3>
+		<h3>
+			<%= @genre.name %>　一覧
+			<span class="item-count-title"> (全<%= @items.total_count %>件)</span>
+		</h3>
   	<% @items.each do |item| %>
 			<div class="col-xs-6 col-md-3 item-index" >
 				<%= link_to item_path(item) do %>
-				<%= attachment_image_tag item, :image, :fill, 180, 120, format: 'jpeg', fallback: "no_image.jpg", size: '180×120', class: "index-item" %></br>
+				  <%= attachment_image_tag item, :image, :fill, 180, 120, format: 'jpeg', fallback: "no_image.jpg", size: '180×120', class: "index-item" %></br>
 				<% end %>
 				<%= item.name %></br>
         ¥<%= item.tax_excluded_price %>

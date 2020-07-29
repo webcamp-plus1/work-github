@@ -9,13 +9,13 @@ class Admins::OrderItemsController < Admins::OrdersController
       # @order_item.order.status = 'in_production'
       # @order_item.order.update
       elsif @order_item.order.order_items.pluck(:production_status).all? { |production_status| production_status == 'done' }
-        # .pluck(:カラム名)でカラムの値を全て取得。その後'done'を探す １つでも違うとfalseを返す
+        # .pluck(:カラム名)でカラムの値を全て取得。その後allメソッドで'done'を探す １つでも違うとfalseを返す
         @order_item.order.update(status: 'preparing')
         # @order_item.order.status = 'preparing'
         # @order_item.order.update
       end
-      redirect_to request.referer
     end
+    redirect_to request.referer
   end
 
   private
