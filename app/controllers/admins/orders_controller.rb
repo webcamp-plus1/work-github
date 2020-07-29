@@ -24,7 +24,7 @@ class Admins::OrdersController < ApplicationController
     if @order.update(order_params)
       if @order.status == 'confirm'
         @order.order_items.each do |order_item|
-          order_item.update(production_status: "waiting")
+        order_item.update(production_status: "waiting")
         end
       end
     end
