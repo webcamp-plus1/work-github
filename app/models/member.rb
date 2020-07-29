@@ -17,6 +17,6 @@ class Member < ApplicationRecord
   validates :phone_number, presence: true
 
   def active_for_authentication?
-    super && (self.is_unsubscribe_status == false)
+    super && (is_unsubscribe_status == false)
   end
 end
