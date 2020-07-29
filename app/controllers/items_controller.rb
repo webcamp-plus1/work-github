@@ -7,16 +7,13 @@ class ItemsController < ApplicationController
     #   Genre.find(2),
     #   Genre.find(2),
     # ]
-    if params[:genre_id]
-      @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).reverse_order
-    else
-      @items = Item.where(genre_id: @ary).page(params[:page]).reverse_order
-    end
+    @items = Item.where(genre_id: @ary).page(params[:page]).reverse_order
   end
 
   def show
     @item = Item.find(params[:id])
     if member_signed_in?
+      # ↓カート内にある商品個数を取得するときに記載する
       if current_member.cart_items.find_by(item_id: @item.id)
         @item_post = current_member.cart_items.find_by(item_id: @item.id)
       else

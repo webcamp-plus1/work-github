@@ -43,19 +43,21 @@ class OrdersController < ApplicationController
     if @order.save!
       @cart_items = current_member.cart_items.all
       @cart_items.each do |cart_item|
-        @order_items = OrderItem.new
-        @order_items.order_id = @order.id
-        @order_items.item_id = cart_item.item.id
-        @order_items.count = cart_item.count
-        @order_items.orderded_price = cart_item.item.tax_excluded_price
-        @order_items.save
+        order_item = OrderItem.new
+        order_item.order_id = @order.id
+        order_item.item_id = cart_item.item.id
+        order_item.count = cart_item.count
+        order_item.orderded_price = cart_item.item.tax_excluded_price
+        order_item.save
       end
-      @delivery = Delivery.new('member_id' => current_member.id,
-                               'postal_code' => @order.postal_code,
-                               'destination' => @order.destination,
-                               'addressee' => @order.addressee)
-      @delivery.save
-      current_member.cart_items.destroy_all
+      if @order.address_selection == 'new_address'
+        @delivery = Delivery.new('member_id' => current_member.id,
+                                 'postal_code' => @order.postal_code,
+                                 'destination' => @order.destination,
+                                 'addressee' => @order.addressee)
+        @delivery.save
+      end
+      @cart_items.destroy_all
       redirect_to orders_done_path
     else
       render 'confirm'
@@ -66,7 +68,6 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
     @orders = Order.where(member_id: current_member.id).page(params[:page]).reverse_order.per(4)
   end
 
